@@ -130,7 +130,7 @@
       "verdict": "partly",
       "figure": "32 vCPU / 64 GiB, L4 GPU; US only",
       "scenario": "Fixed pairs by plan, up to 32 vCPU / 64 GiB on Team, NVIDIA L4 GPUs on paid plans, and one disk that grows live.",
-      "note": "Fixed vCPU/RAM pairs by plan, from 2/4 to 32/64, and GPU machines with 1–4 NVIDIA L4s at $0.80 per GPU-hour on paid plans. One disk that grows live to 1,024 GiB. No region choice: a region field is refused, and the terms say the United States.",
+      "note": "Fixed vCPU/RAM pairs by plan, from 2/4 to 32/64, and GPU machines with 1–4 NVIDIA L4s at $0.64 per GPU-hour on paid plans. One disk that grows live to 1,024 GiB. No region choice: a region field is refused, and the terms say the United States.",
       "source": {
         "url": "https://instabox.sh/docs/machines/storage.md",
         "quote": "You cannot choose a region.",

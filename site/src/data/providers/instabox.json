@@ -15,7 +15,7 @@
   "sizes": "Fixed vCPU/RAM pairs by plan: Free is 4/8 only; Pro adds 2/4 and 8/16; Builder goes to 16/32; Team to 32/64. GPU machines carry 1–4 NVIDIA L4s (11 vCPU / 36 GiB each) on paid plans. One disk at `/data`, 20 GiB by default, growable live to 200 GiB on Pro and 1,024 GiB on Team.",
   "billing": {
     "model": "Monthly subscription that is also a credit: $20, $100 or $500, reset monthly.",
-    "meter": "Per second while running, on the size you asked for: $0.004 per vCPU-hour, $0.00225 per GiB-hour, $0.00011 per GiB-hour for disk beyond the plan's included pool, $0.02 per GiB of egress beyond the allowance. NVIDIA L4 GPUs are $0.80 per GPU-hour on top.",
+    "meter": "Per second while running, on the size you asked for: $0.004 per vCPU-hour, $0.00225 per GiB-hour, $0.00011 per GiB-hour for disk beyond the plan's included pool, $0.02 per GiB of egress beyond the allowance. NVIDIA L4 GPUs are $0.64 per GPU-hour on top.",
     "stopped": "Disk only. Paid plans include 200 GiB (Pro), 1 TiB (Builder) or 5 TiB (Team) of disk across machines; snapshots and a paused machine's saved memory are free.",
     "planFee": "The plan fee is the credit. Usage comes out of it first, then pay-as-you-go, and unused credit expires at month end.",
     "minimum": "$20 a month on Pro, or the free plan: one 4/8 machine, five snapshots, 100 GiB of egress a month and runs of at most 480 minutes."
