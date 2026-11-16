@@ -1,6 +1,24 @@
 {
   "changes": [
     {
+      "date": "2026-11-16",
+      "title": "InstaBox cut the NVIDIA L4 GPU rate and added H100",
+      "provider": "instabox",
+      "what": "InstaBox's published NVIDIA L4 GPU add-on fell from $0.80 to $0.64 per GPU-hour ($0.765 all in with the 11 vCPU / 36 GiB the GPU brings, down from $0.925). The same table now lists NVIDIA H100 PCIe at $3.49 per GPU-hour ($4.17 all in). vCPU, memory, disk, egress and plan fees did not change. The calculator still does not price GPUs.",
+      "sources": [
+        {
+          "url": "https://instabox.sh/docs/account/pricing",
+          "quote": "NVIDIA L4 (`l4`) | $0.64 per GPU-hour | 11 vCPU / 36 GiB | $0.765 per hour",
+          "confidence": "pricing-page"
+        },
+        {
+          "url": "https://instabox.sh/docs/account/pricing",
+          "quote": "NVIDIA H100 PCIe (`h100`) | $3.49 per GPU-hour | 44 vCPU / 224 GiB | $4.17 per hour",
+          "confidence": "pricing-page"
+        }
+      ]
+    },
+    {
       "date": "2026-11-12",
       "title": "Daytona 2.0 replaces the container platform with VMs and a 24-hour session cap",
       "provider": "daytona",

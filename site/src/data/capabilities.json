@@ -2681,11 +2681,11 @@
         {
           "provider": "instabox",
           "verdict": "yes",
-          "figure": "NVIDIA L4, $0.80/GPU-hour",
-          "note": "Paid plans only: 1 to 4 L4s per machine and 8 per workspace, each bringing 11 vCPU and 36 GiB.",
+          "figure": "NVIDIA L4, $0.64/GPU-hour",
+          "note": "Paid plans only: 1 to 4 L4s per machine and 8 per workspace, each bringing 11 vCPU and 36 GiB. NVIDIA H100 PCIe is $3.49 per GPU-hour.",
           "source": {
             "url": "https://instabox.sh/docs/account/pricing.md",
-            "quote": "NVIDIA L4 (`l4`) | \\$0.80 per GPU-hour | 11 vCPU / 36 GiB",
+            "quote": "NVIDIA L4 (`l4`) | $0.64 per GPU-hour | 11 vCPU / 36 GiB | $0.765 per hour",
             "confidence": "pricing-page"
           }
         },
