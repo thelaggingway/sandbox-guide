@@ -1,51 +1,69 @@
 {
   "provider": "runtime",
-  "checkedOn": "2026-11-12",
-  "summary": "Per second on measured CPU with a 50-millicore floor, reserved memory, and stored disk in decimal GB.",
+  "checkedOn": "2026-11-23",
+  "summary": "A monthly plan whose fee comes back as usage, then per-second measured CPU with a 100-millicore floor, reserved memory, and stored disk in decimal GB.",
   "cpu": {
-    "rate": 0.025,
+    "rate": 0.03,
     "billing": "active",
-    "floor": 0.05
+    "floor": 0.1
   },
   "ram": {
-    "rate": 0.0075
+    "rate": 0.008
   },
   "disk": {
-    "running": 0.00011111111111111112,
-    "stopped": 0.00011111111111111112,
-    "included": 10,
-    "includedRunningOnly": true,
+    "running": 0.0001388888888888889,
+    "stopped": 0.00025,
     "decimalGB": true
   },
   "between": "kept",
   "egress": {
-    "perGiB": 0.0215,
-    "note": "$0.02 per decimal GB after that.",
-    "url": "https://withruntime.com/docs/pricing",
-    "included": "100 GiB a month per account"
+    "perGiB": 0.03,
+    "note": "No free outbound traffic. Every GB a machine sends out is billed; inbound is free. Not priced by the calculator.",
+    "url": "https://withruntime.com/docs/pricing"
   },
   "plans": [
     {
-      "name": "Prepaid credit",
-      "fee": 0,
-      "allowance": {
-        "cpuHours": 25,
-        "ramHours": 100
-      },
-      "note": "A new account must buy at least $10 of credit before it runs; the monthly 25 vCPU-hours and 100 GiB-hours apply only after that purchase. The $10 is prepaid usage, not a fee, so it is not added to totals."
+      "name": "Pro",
+      "fee": 25,
+      "credit": 25,
+      "maxVcpu": 8,
+      "maxRam": 32,
+      "note": "The $25 fee returns as $25 of usage. A 7-day Pro trial includes $5 of usage; a card is asked at the first sandbox."
+    },
+    {
+      "name": "Growth",
+      "fee": 99,
+      "credit": 110,
+      "maxVcpu": 16,
+      "maxRam": 64
+    },
+    {
+      "name": "Scale",
+      "fee": 499,
+      "credit": 575,
+      "maxVcpu": 32,
+      "maxRam": 96
     }
   ],
   "notes": [
-    "A stopped box keeps billing storage, including saved memory; only delete ends the charge.",
-    "Automatic top-ups earn 5% extra credit, not subtracted here.",
-    "Storage is $0.08 per decimal GB per 30-day month, so the hourly rate divides by 720 hours. Runtime rounds its own per-GiB-hour figure to 119 microdollars, which this model does not reproduce exactly.",
-    "Pay first: nothing runs before the first $10 purchase; the first $10 is matched, so the practical opening balance is $20.",
-    "Hosted Agents (private beta) bill at $0.03 per active vCPU-hour and $0.01 per GiB-hour; that is a separate product, not this card."
+    "A paused machine pays only for storage, at the warm rate; a deleted machine costs nothing.",
+    "CPU is billed on use with a 0.1 vCPU floor while running. Memory is billed on what the machine holds, while it runs.",
+    "Running disk is $0.10 per decimal GB per 30-day month (standard); paused storage is $0.18 per GB-month (warm). The hourly rates divide by 720 hours.",
+    "Usage past the plan's included amount is charged as it adds up, at $50, $100, $250, $500, then every $1,000.",
+    "There is no free plan. Cancelling, or an unpaid charge, pauses machines; their data is deleted 30 days later."
   ],
   "sources": [
     {
       "label": "Pricing",
       "url": "https://withruntime.com/docs/pricing"
+    },
+    {
+      "label": "Pricing reference",
+      "url": "https://withruntime.com/docs/reference/pricing"
+    },
+    {
+      "label": "Plans and usage",
+      "url": "https://withruntime.com/pricing"
     }
   ],
   "upkeep": {

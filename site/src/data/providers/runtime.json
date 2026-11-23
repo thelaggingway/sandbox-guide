@@ -3,7 +3,7 @@
   "name": "Runtime",
   "url": "https://withruntime.com",
   "status": "researched",
-  "checkedOn": "2026-11-12",
+  "checkedOn": "2026-11-23",
   "oneLiner": "Firecracker microVMs billed on measured CPU, with the strongest secret handling in this set.",
   "whatItIs": [
     "Runtime Cloud is a hosted fleet of Firecracker microVMs that an agent, or the program driving it, creates, runs commands in, pauses, forks and deletes over an API.",
@@ -12,114 +12,124 @@
   ],
   "whoFor": "Teams building agent products that execute model-written code, and teams migrating off a rival sandbox SDK: drop-in shims exist for E2B, Daytona, Vercel and Blaxel.",
   "isolation": "Firecracker microVM on servers Runtime operates, with its own kernel; not a container and not gVisor. New sandboxes expose `/dev/kvm`, so nested virtualisation works. No GPU and no ARM: x86-64 only.",
-  "sizes": "No fixed size menu: any vCPU / memory / disk combination inside the bounds, which are 16 vCPU, 64 GiB of memory and 400 GiB of disk on a paid account. CPU is shared by default; reserved guarantees every vCPU at full price.",
+  "sizes": "No fixed size menu: any vCPU / memory / disk combination inside the plan bounds. Pro allows 8 vCPU and 32 GiB; Growth 16 vCPU and 64 GiB; Scale 32 vCPU and 96 GiB. CPU is shared by default; reserved guarantees every vCPU at full price.",
   "billing": {
-    "model": "Prepaid credit, no plan fee, no seats and no commitment. Pay first: credit from $10 before the first sandbox; the first $10 is matched.",
-    "meter": "Per second: $0.025 per active vCPU-hour measured, with a 50-millicore floor per sandbox, plus $0.0075 per reserved GiB-hour of memory. Storage while paused or stopped is $0.08 per decimal GB per 30-day month. Hosted Agents sessions (private beta) bill separately at $0.03 per active vCPU-hour and $0.01 per GiB-hour.",
-    "stopped": "Disk and saved memory blocks keep billing at the storage rate. Only delete ends the charge.",
-    "planFee": "None publicly. Plans exist in a private beta with no published prices.",
-    "minimum": "No minimum billing period. A new account must buy at least $10 of credit before its first sandbox; the first $10 is matched, so it starts with $20. Top-ups are $10 to $10,000, and an automatic top-up earns 5% extra credit."
+    "model": "A monthly plan whose fee comes back as usage: Pro $25 ($25 included), Growth $99 ($110 included), Scale $499 ($575 included). There is no free plan.",
+    "meter": "Per second: $0.03 per busy vCPU-hour measured, with a 100-millicore floor per sandbox, plus $0.008 per reserved GB-hour of memory. Running disk is $0.10 per decimal GB per 30-day month; paused storage is $0.18 per GB-month. Outbound traffic is $0.03 per GB with none free.",
+    "stopped": "A paused machine pays only for storage at the warm rate. Only delete ends the charge.",
+    "planFee": "Pro $25, Growth $99, Scale $499 a month. The fee returns as usage ($25, $110, $575). Yearly is 12 months for the price of 10.",
+    "minimum": "No minimum billing period. Signing up takes no card; creating a machine asks for one and starts a 7-day Pro trial with $5 of usage."
   },
   "cost": {
     "A": {
-      "headline": "$4.25 to $11.96 a month",
-      "shape": "2 vCPU / 4 GiB / 4 GiB disk, deleted after each task",
+      "headline": "$25 a month on Pro",
+      "shape": "2 vCPU / 4 GiB / 10 GiB disk, deleted after each task",
       "lines": [
         {
           "label": "Memory",
-          "arithmetic": "166.67 h × 4 GiB × $0.0075",
-          "amount": "$5.00"
+          "arithmetic": "166.67 h \u00d7 4 GB \u00d7 $0.008",
+          "amount": "$5.33"
         },
         {
-          "label": "CPU at the 50-millicore floor",
-          "arithmetic": "0.05 × 166.67 h × $0.025",
-          "amount": "$0.21"
+          "label": "CPU at the 100-millicore floor",
+          "arithmetic": "0.1 \u00d7 166.67 h \u00d7 $0.03",
+          "amount": "$0.50"
         },
         {
           "label": "CPU fully busy",
-          "arithmetic": "2 × 166.67 h × $0.025",
-          "amount": "$8.33"
+          "arithmetic": "2 \u00d7 166.67 h \u00d7 $0.03",
+          "amount": "$10.00"
         },
         {
-          "label": "Monthly allowance for a paid account",
-          "arithmetic": "25 active vCPU-hours × $0.025 + 100 GiB-hours × $0.0075, up to what was used",
-          "amount": "−$0.96 to −$1.38"
+          "label": "Disk while running",
+          "arithmetic": "10.74 GB \u00d7 $0.10 \u00d7 166.67/720",
+          "amount": "$0.25"
+        },
+        {
+          "label": "Pro plan",
+          "arithmetic": "$25 fee, $25 of usage included",
+          "amount": "$25.00"
         }
       ],
-      "total": "$4.25 to $11.96",
+      "total": "$25.00",
       "notes": [
-        "Disk under 10 GiB is included while running, and deletion ends the charge.",
+        "Usage is about $6.08 to $15.58, under Pro's $25 included usage, so the month costs the $25 fee.",
         "The range exists because per-task CPU use is not published; the floor sets the bill for a task that mostly waits.",
-        "An account that has bought credit gets 25 active vCPU-hours and 100 GiB-hours of memory free each calendar month; both are taken off here."
+        "Growth at $99 would cost more for this workload."
       ]
     },
     "B": {
-      "headline": "$46.82 to $118.91 a month",
+      "headline": "$60.92 to $139.76 a month",
       "shape": "4 vCPU / 8 GiB / 50 GiB, 730 h, always on",
       "lines": [
         {
           "label": "Memory",
-          "arithmetic": "8 × 730 × $0.0075",
-          "amount": "$43.80"
+          "arithmetic": "8 \u00d7 730 \u00d7 $0.008",
+          "amount": "$46.72"
         },
         {
-          "label": "CPU at the floor",
-          "arithmetic": "0.05 × 730 × $0.025",
-          "amount": "$0.91"
+          "label": "CPU at 10% busy",
+          "arithmetic": "0.4 \u00d7 730 \u00d7 $0.03",
+          "amount": "$8.76"
         },
         {
           "label": "CPU fully busy",
-          "arithmetic": "4 × 730 × $0.025",
-          "amount": "$73.00"
+          "arithmetic": "4 \u00d7 730 \u00d7 $0.03",
+          "amount": "$87.60"
         },
         {
-          "label": "Disk past the included 10 GiB",
-          "arithmetic": "(53.7 − 10.7) GB × $0.08 × 730/720",
-          "amount": "$3.48"
+          "label": "Disk while running",
+          "arithmetic": "53.7 GB \u00d7 $0.10 \u00d7 730/720",
+          "amount": "$5.44"
         },
         {
-          "label": "Monthly allowance for a paid account",
-          "arithmetic": "25 active vCPU-hours × $0.025 + 100 GiB-hours × $0.0075, up to what was used",
-          "amount": "−$1.38"
+          "label": "Pro included usage",
+          "arithmetic": "$25 fee returned as usage",
+          "amount": "\u2212$25.00"
         }
       ],
-      "total": "$46.82 to $118.91",
+      "total": "$60.92 to $139.76",
       "notes": [
         "Always-on needs `persistent: true` or `idlePauseSeconds: 0`; otherwise the box pauses after 5 idle minutes.",
         "Disk is an upper bound: only blocks the disk alone holds are billed, so a mostly empty disk costs less.",
-        "An account that has bought credit gets 25 active vCPU-hours and 100 GiB-hours of memory free each calendar month; both are taken off here."
+        "Because Pro's fee equals its included usage, a month over $25 costs the usage total. Growth ($99 / $110 included) is dearer until usage passes $99."
       ]
     },
     "C": {
-      "headline": "$3.56 to $7.44 a month",
-      "shape": "2 vCPU / 4 GiB / 20 GiB, 90 running hours in a 720-hour month, stopped otherwise",
+      "headline": "$25 a month on Pro",
+      "shape": "2 vCPU / 4 GiB / 20 GiB, 90 running hours, paused otherwise",
       "lines": [
         {
           "label": "Running, at the floor",
-          "arithmetic": "0.05 × 90 × $0.025 + 4 × 90 × $0.0075",
-          "amount": "$2.81"
+          "arithmetic": "0.1 \u00d7 90 \u00d7 $0.03 + 4 \u00d7 90 \u00d7 $0.008",
+          "amount": "$3.15"
         },
         {
           "label": "Running, fully busy",
-          "arithmetic": "2 × 90 × $0.025 + 4 × 90 × $0.0075",
-          "amount": "$7.20"
+          "arithmetic": "2 \u00d7 90 \u00d7 $0.03 + 4 \u00d7 90 \u00d7 $0.008",
+          "amount": "$8.28"
         },
         {
-          "label": "Stopped disk",
-          "arithmetic": "21.5 GB × $0.08 × 630/720",
-          "amount": "$1.50"
+          "label": "Running disk (standard)",
+          "arithmetic": "21.5 GB \u00d7 $0.10 \u00d7 90/720",
+          "amount": "$0.27"
         },
         {
-          "label": "Monthly allowance for a paid account",
-          "arithmetic": "25 active vCPU-hours × $0.025 + 100 GiB-hours × $0.0075, up to what was used",
-          "amount": "−$0.86 to −$1.38"
+          "label": "Paused disk (warm)",
+          "arithmetic": "21.5 GB \u00d7 $0.18 \u00d7 640/720",
+          "amount": "$3.44"
+        },
+        {
+          "label": "Pro plan",
+          "arithmetic": "$25 fee, $25 of usage included",
+          "amount": "$25.00"
         }
       ],
-      "total": "$3.56 to $7.44",
+      "total": "$25.00",
       "notes": [
-        "A 30-day month is 720 hours, so 630 hours are stopped.",
-        "Pausing instead keeps memory and costs about $3.86 to $7.74.",
-        "An account that has bought credit gets 25 active vCPU-hours and 100 GiB-hours of memory free each calendar month; both are taken off here."
+        "The calculator's month is 730 hours, so 640 hours are paused.",
+        "Usage is about $7.12 to $11.99, under Pro's $25 included usage.",
+        "Paused storage is billed at the warm rate ($0.18/GB-month), not the running standard rate."
       ]
     }
   },
@@ -191,7 +201,7 @@
   },
   "fits": {
     "well": [
-      "An agent that mostly waits: measured CPU with a 50-millicore floor makes an idle hour about $0.03.",
+      "An agent that mostly waits: measured CPU with a 100-millicore floor makes an idle 2 vCPU / 4 GB hour about $0.04.",
       "A small team that needs SSO, SCIM, a 400-day audit log and per-key spend limits without an enterprise plan.",
       "Secrets that must not enter the machine, plus OIDC tokens for AWS or GCP."
     ],
@@ -199,13 +209,13 @@
       "A buyer who needs a named founder, a funding history or a company older than a few months.",
       "Multi-region or EU data residency: there is one region, in Virginia.",
       "A workload that needs a Runtime-owned SOC 2 report.",
-      "A buyer who wants to try before paying: there is no free trial, and the first sandbox needs $10 of credit, matched to $20."
+      "A buyer who wants to stay on a free tier: there is no free plan. Signing up is free, but the first sandbox asks for a card and starts a 7-day Pro trial with $5 of usage."
     ]
   },
   "usability": {
     "dashboard": "Yes, a detailed console: a Home report with a Needs you section, sandboxes with Overview, Terminal, Files, Activity and Settings tabs, a limits page, and usage and billing with daily spend by product.",
-    "withoutCode": "Partly, and only for the first step: once you have added credit, one click on Home starts a sandbox with a shell in the page. There are no app templates; the documented no-code path is pasting its `llms.txt` link into Claude Code, Codex or Cursor, and a private-beta Agents product runs a coding agent for you.",
-    "signup": "Google or email sign-in and no waitlist, but credit from $10 before the first sandbox. A card is the normal route; an agent can open a wallet account and pay in USDC.",
+    "withoutCode": "Partly, and only for the first step: once a card is on file, one click on Home starts a sandbox with a shell in the page. There are no app templates; the documented no-code path is pasting its `llms.txt` link into Claude Code, Codex or Cursor.",
+    "signup": "Google or email sign-in and no waitlist. Signing up takes no card; creating a machine asks for one and starts a 7-day Pro trial with $5 of usage.",
     "docs": "Extensive, every page dated, with `llms.txt` bundles. Support is an AI agent in the same call, with humans for billing, security and data loss. The status page is public and specific.",
     "tripsUp": [
       "A sandbox is not a website host: nothing is reachable until you open a preview, domain or TCP port.",
@@ -214,7 +224,7 @@
       "The first useful step still needs a command or an agent.",
       "Memory is measured in GiB and disk in decimal GB, a 7.4% difference that shows up in quotes.",
       "There is no EU region, and uptime was below the promised 99% during research.",
-      "Nothing runs until you have paid: the first sandbox needs $10 of credit, matched to $20."
+      "There is no free plan: the first sandbox asks for a card and starts a 7-day Pro trial."
     ]
   },
   "caveats": [
@@ -241,24 +251,19 @@
       ]
     },
     {
-      "issue": "Free usage needs a purchase",
-      "detail": "Since 10 November 2026 a new account runs nothing until it buys credit from $10. The 100 GiB-hours and 25 vCPU-hours return every month only after that. Accounts opened before 10 November keep any free hours they had left.",
+      "issue": "There is no free plan",
+      "detail": "Signing up takes no card, but creating a machine asks for one and starts a 7-day Pro trial with $5 of usage. After that the cheapest plan is Pro at $25 a month, returned as usage. Cancelling pauses machines; their data is deleted 30 days later.",
       "status": "open",
       "evidence": [
         {
-          "url": "https://withruntime.com/pricing",
-          "quote": "No free usage before you pay. You add credit by card from $10",
+          "url": "https://withruntime.com/docs/pricing",
+          "quote": "Signing up takes no card. Creating a machine needs one",
           "confidence": "pricing-page"
         },
         {
-          "url": "https://withruntime.com/docs/changelog.md",
-          "quote": "New accounts add credit before their first sandbox.",
-          "confidence": "docs-confirmed"
-        },
-        {
-          "url": "https://withruntime.com/docs/included-usage.md",
-          "quote": "An account given free hours or free usage before 10 November 2026 keeps what is left of them.",
-          "confidence": "docs-confirmed"
+          "url": "https://withruntime.com/docs/pricing",
+          "quote": "There is no free plan.",
+          "confidence": "pricing-page"
         }
       ]
     },
@@ -295,14 +300,14 @@
       ]
     },
     {
-      "issue": "Private-beta products have no public price",
-      "detail": "Hosted Agents, Apps, Functions, CI/CD, Containers and standalone Desktops appear in the SDK but not in the public docs index or price page, and refuse non-beta accounts. Agents rates ($0.03 per active vCPU-hour, $0.01 per GiB-hour) come only from the SDK types.",
+      "issue": "Some products besides sandboxes are on the same meter",
+      "detail": "Function calls ($0.20 per million) and CI/CD ($0.001 per vCPU-minute) now have published rates. This guide still prices only sandbox CPU, memory and disk.",
       "status": "open",
       "evidence": [
         {
-          "url": "https://unpkg.com/withruntime@0.50.0/dist/products/agents.d.ts",
-          "quote": "In a private beta: outside it every call is refused with `product_in_beta`.",
-          "confidence": "docs-confirmed"
+          "url": "https://withruntime.com/docs/reference/pricing",
+          "quote": "Function calls | $0.20 per million",
+          "confidence": "pricing-page"
         }
       ]
     }
@@ -311,9 +316,9 @@
     "Secrets the machine never holds: placeholders swapped into HTTPS headers for named hosts only.",
     "OIDC workload identity that AWS and GCP can trust.",
     "Pause with memory, and snapshots that keep memory by default.",
-    "SSO, SCIM, audit logs and roles free on every account.",
-    "Billed on measured CPU, so a box waiting on a model costs the floor, about $0.03 an hour.",
-    "The first $10 is matched, so the entry cost buys $20 of usage."
+    "Custom roles on Growth and above; SSO, SCIM and a year of audit log on Scale.",
+    "Billed on measured CPU, so a box waiting on a model costs the 100-millicore floor plus memory.",
+    "The Pro fee comes back as usage, and a 7-day trial includes $5."
   ],
   "sources": [
     {
