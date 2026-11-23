@@ -59,7 +59,7 @@
       ]
     },
     "B": {
-      "headline": "$60.92 to $139.76 a month",
+      "headline": "$60.92 to $128.76 a month",
       "shape": "4 vCPU / 8 GiB / 50 GiB, 730 h, always on",
       "lines": [
         {
@@ -83,16 +83,21 @@
           "amount": "$5.44"
         },
         {
-          "label": "Pro included usage",
-          "arithmetic": "$25 fee returned as usage",
-          "amount": "\u2212$25.00"
+          "label": "Pro at 10% busy",
+          "arithmetic": "$60.92 usage, $25 included, so the bill is the usage",
+          "amount": "$60.92"
+        },
+        {
+          "label": "Growth at full CPU",
+          "arithmetic": "$99 fee + ($139.76 \u2212 $110 included)",
+          "amount": "$128.76"
         }
       ],
-      "total": "$60.92 to $139.76",
+      "total": "$60.92 to $128.76",
       "notes": [
         "Always-on needs `persistent: true` or `idlePauseSeconds: 0`; otherwise the box pauses after 5 idle minutes.",
         "Disk is an upper bound: only blocks the disk alone holds are billed, so a mostly empty disk costs less.",
-        "Because Pro's fee equals its included usage, a month over $25 costs the usage total. Growth ($99 / $110 included) is dearer until usage passes $99."
+        "The low end is Pro. At full CPU, usage is $139.76, and Growth ($99 fee, $110 included) is cheaper than staying on Pro."
       ]
     },
     "C": {
