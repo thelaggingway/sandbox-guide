@@ -1,6 +1,52 @@
 {
   "changes": [
     {
+      "date": "2026-11-23",
+      "title": "Runtime replaced prepaid credit with monthly plans and new usage rates",
+      "provider": "runtime",
+      "what": "Runtime's public price is no longer prepaid credit with $0.025 per active vCPU-hour, $0.0075 per GiB-hour and $0.08 per GB-month of disk. It now sells Pro ($25, $25 of usage included), Growth ($99 / $110) and Scale ($499 / $575). Usage is $0.03 per busy vCPU-hour with a 0.1 vCPU floor, $0.008 per GB-hour of memory, $0.10 per GB-month for running disk and $0.18 per GB-month while paused, and $0.03 per GB out with none free. A 7-day Pro trial includes $5 of usage. The calculator now prices Pro, Growth and Scale.",
+      "sources": [
+        {
+          "url": "https://withruntime.com/docs/pricing",
+          "quote": "CPU it uses | $0.03 per busy vCPU-hour",
+          "confidence": "pricing-page"
+        },
+        {
+          "url": "https://withruntime.com/docs/pricing",
+          "quote": "Memory it holds | $0.008 per GB-hour",
+          "confidence": "pricing-page"
+        },
+        {
+          "url": "https://withruntime.com/docs/pricing",
+          "quote": "Monthly fee | $25 | $99 | $499",
+          "confidence": "pricing-page"
+        },
+        {
+          "url": "https://withruntime.com/docs/reference/pricing",
+          "quote": "CPU is billed on the vCPU time a machine uses, and at least 0.1 vCPU while it runs.",
+          "confidence": "pricing-page"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-23",
+      "title": "InstaBox cut the NVIDIA H100 GPU rate and listed A100 and T4",
+      "provider": "instabox",
+      "what": "InstaBox's published NVIDIA H100 PCIe add-on fell from $3.49 to $3.00 per GPU-hour ($3.68 all in with the 44 vCPU / 224 GiB the GPU brings, down from $4.17). The same table now lists NVIDIA A100-SXM4-40GB at $2.09 per GPU-hour ($2.292 all in) and Tesla T4 at $0.49 ($0.572 all in). vCPU, memory, disk, egress, L4 and plan fees did not change. The calculator still does not price GPUs.",
+      "sources": [
+        {
+          "url": "https://instabox.sh/docs/account/pricing",
+          "quote": "NVIDIA H100 PCIe (`h100`) | $3.00 per GPU-hour | 44 vCPU / 224 GiB | $3.68 per hour",
+          "confidence": "pricing-page"
+        },
+        {
+          "url": "https://instabox.sh/pricing",
+          "quote": "NVIDIA H100 PCIe $3.00 / GPU / hour",
+          "confidence": "pricing-page"
+        }
+      ]
+    },
+    {
       "date": "2026-11-16",
       "title": "InstaBox cut the NVIDIA L4 GPU rate and added H100",
       "provider": "instabox",
@@ -31,7 +77,7 @@
         },
         {
           "url": "https://www.daytona.com/changelog/daytona-2-0.md",
-          "quote": "Published: 2026-11-01 · Version: v2.0.0",
+          "quote": "Published: 2026-11-01 \u00b7 Version: v2.0.0",
           "confidence": "docs-confirmed"
         },
         {
@@ -54,7 +100,7 @@
         },
         {
           "url": "https://cloud.morph.so/web/product/devboxes",
-          "quote": "Custom domains aren’t supported yet.",
+          "quote": "Custom domains aren\u2019t supported yet.",
           "confidence": "docs-confirmed"
         }
       ]
@@ -94,16 +140,16 @@
       "date": "2026-11-12",
       "title": "Contabo: a setup fee on monthly terms, and the GPU machine is orderable",
       "provider": "contabo",
-      "what": "Contabo's 1-month Cloud VPS 4 now carries a €2.00 one-time setup fee; longer terms stay fee-free. The single RTX PRO 6000 GPU machine can now be ordered rather than waitlisted. The date is when this guide checked.",
+      "what": "Contabo's 1-month Cloud VPS 4 now carries a \u20ac2.00 one-time setup fee; longer terms stay fee-free. The single RTX PRO 6000 GPU machine can now be ordered rather than waitlisted. The date is when this guide checked.",
       "sources": [
         {
           "url": "https://contabo.com/en-us/vps/cloud-vps-core-4",
-          "quote": "1 Month €5.50 / month €2.00 Setup fee 3 Months €5.50 / month No Setup Fee",
+          "quote": "1 Month \u20ac5.50 / month \u20ac2.00 Setup fee 3 Months \u20ac5.50 / month No Setup Fee",
           "confidence": "pricing-page"
         },
         {
           "url": "https://contabo.com/en-us/gpu-vps",
-          "quote": "Dedicated NVIDIA RTX PRO 6000 18 vCPU Cores・96 GB RAM・900 GB NVMe",
+          "quote": "Dedicated NVIDIA RTX PRO 6000 18 vCPU Cores\u30fb96 GB RAM\u30fb900 GB NVMe",
           "confidence": "pricing-page"
         }
       ]
@@ -192,7 +238,7 @@
       "date": "2026-11-12",
       "title": "Blaxel: ready-made agent, browser and desktop images, and lower uptime",
       "provider": "blaxel",
-      "what": "A recheck found that Blaxel already documents images with Claude Code, Codex, Chromium, Playwright and an XFCE desktop, SSH through a Tailscale image, a call that cuts all outbound internet, and an MIT-licensed sandbox API; this guide had missed them. Its status page now shows 98.45% for sandboxes over 14 August–12 November. Prices and A/B/C are unchanged. The date is when this guide checked.",
+      "what": "A recheck found that Blaxel already documents images with Claude Code, Codex, Chromium, Playwright and an XFCE desktop, SSH through a Tailscale image, a call that cuts all outbound internet, and an MIT-licensed sandbox API; this guide had missed them. Its status page now shows 98.45% for sandboxes over 14 August\u201312 November. Prices and A/B/C are unchanged. The date is when this guide checked.",
       "sources": [
         {
           "url": "https://docs.blaxel.ai/Sandboxes/Templates.md",
@@ -369,7 +415,7 @@
       "date": "2026-11-12",
       "title": "Cloudflare Sandbox: an agent harness, faster starts and smaller custom sizes",
       "provider": "cloudflare-sandbox",
-      "what": "Cloudflare now documents an experimental Agents SDK harness that runs Claude Code or Codex in a container with no Dockerfile, a 648 ms median start on its new runtime, an interactive terminal through exec(), and custom sizes from 1/16 of a vCPU. Account concurrency rose tenfold to 15,000 vCPU. Its limits page dropped the 3 GiB-per-vCPU memory rule that a September changelog still states; this guide keeps pricing the standard presets, so the A/B/C costs are unchanged. It also adds a 24 September disclosure that a shared storage pool let customers recover each other’s leftover disk blocks, fixed by 19 September. The date is when this guide checked, not when Cloudflare made each change.",
+      "what": "Cloudflare now documents an experimental Agents SDK harness that runs Claude Code or Codex in a container with no Dockerfile, a 648 ms median start on its new runtime, an interactive terminal through exec(), and custom sizes from 1/16 of a vCPU. Account concurrency rose tenfold to 15,000 vCPU. Its limits page dropped the 3 GiB-per-vCPU memory rule that a September changelog still states; this guide keeps pricing the standard presets, so the A/B/C costs are unchanged. It also adds a 24 September disclosure that a shared storage pool let customers recover each other\u2019s leftover disk blocks, fixed by 19 September. The date is when this guide checked, not when Cloudflare made each change.",
       "sources": [
         {
           "url": "https://developers.cloudflare.com/agents/harnesses/container/",
@@ -501,12 +547,12 @@
         },
         {
           "url": "https://www.tensorlake.ai/terms",
-          "quote": "applies them automatically to Customer’s next invoice; Customer is not required to submit a claim",
+          "quote": "applies them automatically to Customer\u2019s next invoice; Customer is not required to submit a claim",
           "confidence": "docs-confirmed"
         },
         {
           "url": "https://www.tensorlake.ai/terms",
-          "quote": "4 hours, 24×7",
+          "quote": "4 hours, 24\u00d77",
           "confidence": "docs-confirmed"
         },
         {
@@ -655,11 +701,11 @@
       "date": "2026-10-28",
       "title": "boxd cut its rates by about a fifth and doubled the machine quota in 19 days",
       "provider": "boxd",
-      "what": "The 9 October capture of boxd's pricing page lists €0.049 per vCPU-hour, €0.015 per GiB-hour of RAM, €0.0001 per GiB-hour of disk and 50 machines. The live page lists €0.039, €0.012, €0.00008 and 100 machines. boxd publishes no price-change notice, and its terms let it adjust rates at any time for usage from the date of the change.",
+      "what": "The 9 October capture of boxd's pricing page lists \u20ac0.049 per vCPU-hour, \u20ac0.015 per GiB-hour of RAM, \u20ac0.0001 per GiB-hour of disk and 50 machines. The live page lists \u20ac0.039, \u20ac0.012, \u20ac0.00008 and 100 machines. boxd publishes no price-change notice, and its terms let it adjust rates at any time for usage from the date of the change.",
       "sources": [
         {
           "url": "http://web.archive.org/web/20261009152053/https://boxd.sh/pricing",
-          "quote": "€0.049 / vCPU-hour",
+          "quote": "\u20ac0.049 / vCPU-hour",
           "confidence": "third-party"
         },
         {
@@ -708,7 +754,7 @@
         },
         {
           "url": "https://web.archive.org/web/20261013193324/https://lizard.build/pricing",
-          "quote": "Small 2 vCPU · 4 GB RAM · 5 GB disk",
+          "quote": "Small 2 vCPU \u00b7 4 GB RAM \u00b7 5 GB disk",
           "confidence": "third-party"
         }
       ]
@@ -734,7 +780,7 @@
       "sources": [
         {
           "url": "https://github.com/tensorlakeai/tensorlake/security/advisories/GHSA-8g63-53c9-65j2",
-          "quote": "The package was live on npm for approximately 1 hour 40 minutes (01:12–02:54 UTC). Only the npm package was affected, the PyPI and crates.io `tensorlake` packages and the `tensorlake` CLI were not.",
+          "quote": "The package was live on npm for approximately 1 hour 40 minutes (01:12\u201302:54 UTC). Only the npm package was affected, the PyPI and crates.io `tensorlake` packages and the `tensorlake` CLI were not.",
           "confidence": "docs-confirmed"
         }
       ]
@@ -752,7 +798,7 @@
         },
         {
           "url": "https://blog.ovhcloud.com/fr/posts/cve-2026-53359-kvm-patching-lessons-learned/",
-          "quote": "données corrompues sur plusieurs VMs réparties sur 3 clusters",
+          "quote": "donn\u00e9es corrompues sur plusieurs VMs r\u00e9parties sur 3 clusters",
           "confidence": "docs-confirmed"
         }
       ]

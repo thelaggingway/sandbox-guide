@@ -24,7 +24,7 @@
         "$50",
         "$9.34"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://blaxel.ai/pricing": {
       "figures": [
@@ -44,7 +44,7 @@
         "$50",
         "$800"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://docs.boat.dev/pricing": {
       "figures": [
@@ -149,7 +149,7 @@
         "$7.19",
         "$8.30"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://boxd.sh/pricing": {
       "figures": [
@@ -181,7 +181,7 @@
         "€69.35",
         "€8.91"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://developers.cloudflare.com/containers/platform/pricing/": {
       "figures": [
@@ -193,7 +193,7 @@
         "$0.05",
         "$5"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://e2b.dev/pricing": {
       "figures": [
@@ -213,9 +213,10 @@
         "$166",
         "$2000",
         "$316",
+        "$5",
         "$500"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://instabox.sh/pricing": {
       "figures": [
@@ -224,13 +225,15 @@
         "$0.00225",
         "$0.004",
         "$0.02",
+        "$0.49",
         "$0.64",
         "$100",
+        "$2.09",
         "$20",
-        "$3.49",
+        "$3.00",
         "$500"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://lizard.build/docs/platform/limits": {
       "figures": [
@@ -242,7 +245,7 @@
         "$0.1296",
         "$0.14"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://lizard.build/pricing": {
       "figures": [
@@ -264,7 +267,7 @@
         "$9.13",
         "$99"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://modal.com/pricing": {
       "figures": [
@@ -311,7 +314,7 @@
         "$5400",
         "$6.00"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://cloud.morph.so/web/subscribe": {
       "figures": [
@@ -323,73 +326,29 @@
         "$40",
         "$50"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://withruntime.com/docs/pricing": {
       "figures": [
-        "$0.0000036667",
-        "$0.0000115",
-        "$0.0000276944",
-        "$0.000086",
-        "$0.0002",
-        "$0.00034236",
-        "$0.001875",
-        "$0.0075",
-        "$0.00833",
-        "$0.012",
-        "$0.0125",
-        "$0.0129",
-        "$0.01486",
-        "$0.0162",
-        "$0.01667",
-        "$0.02",
-        "$0.0212",
-        "$0.0240",
-        "$0.025",
-        "$0.0252",
-        "$0.03125",
-        "$0.04032",
-        "$0.05",
-        "$0.0504",
-        "$0.08",
-        "$0.108",
-        "$0.11",
-        "$0.128",
-        "$0.138889",
-        "$0.1419",
-        "$0.500000",
-        "$0.638889",
-        "$0.64",
-        "$0.88",
-        "$1.11",
-        "$1.35",
-        "$1.52",
-        "$1.53",
-        "$1.67",
-        "$10",
+        "$0",
+        "$0.008",
+        "$0.03",
+        "$0.092",
+        "$0.10",
+        "$0.18",
         "$100",
         "$1000",
-        "$10000",
-        "$2.12",
-        "$2.25",
-        "$2.40",
-        "$2.48",
-        "$2.76",
-        "$20",
-        "$21",
-        "$3.45",
-        "$3.97",
-        "$31.25",
-        "$4.20",
+        "$110",
+        "$25",
+        "$250",
+        "$499",
         "$5",
-        "$5.33",
+        "$50",
         "$500",
-        "$520",
-        "$63.89",
-        "$80",
-        "$800"
+        "$575",
+        "$99"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://sandboxer.com/pricing": {
       "figures": [
@@ -415,10 +374,11 @@
         "$53",
         "$92.40"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://fly.io/pricing/": {
       "figures": [
+        "$0",
         "$0.000027",
         "$0.000683",
         "$0.0030",
@@ -444,7 +404,6 @@
         "$0.5500",
         "$0.6417",
         "$0.7334",
-        "$1",
         "$13.16",
         "$132.01",
         "$15000",
@@ -463,6 +422,7 @@
         "$330.01",
         "$38",
         "$396.02",
+        "$4",
         "$4.39",
         "$462.02",
         "$5",
@@ -473,7 +433,7 @@
         "$8.78",
         "$962"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://vercel.com/docs/sandbox/pricing": {
       "figures": [
@@ -499,7 +459,7 @@
         "$0.8832",
         "$20"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.tensorlake.ai/pricing": {
       "figures": [
@@ -529,7 +489,7 @@
         "$52.50",
         "$75.00"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://docs.tensorlake.ai/platform/billing": {
       "figures": [
@@ -546,7 +506,7 @@
         "$250",
         "$5"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://docs.tensorlake.ai/faqs/pricing-limits-faq": {
       "figures": [
@@ -563,26 +523,30 @@
         "$250",
         "$5"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.digitalocean.com/pricing/droplets": {
       "figures": [
         "$0.00",
         "$0.00595",
+        "$0.006850",
         "$0.00893",
         "$0.01",
+        "$0.0162",
         "$0.01786",
-        "$0.024",
+        "$0.02",
         "$0.02679",
         "$0.03571",
-        "$0.052",
+        "$0.04",
+        "$0.0560",
         "$0.06",
         "$0.06250",
         "$0.07143",
+        "$0.07902",
+        "$0.09",
         "$0.09375",
         "$0.12500",
         "$0.14286",
-        "$0.181",
         "$0.18750",
         "$0.19494",
         "$0.25000",
@@ -630,7 +594,7 @@
         "$84.00",
         "$96.00"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://docs.digitalocean.com/products/droplets/details/pricing/": {
       "figures": [
@@ -661,13 +625,13 @@
         "$49.36",
         "$6.17"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://docs.digitalocean.com/products/volumes/details/pricing/": {
       "figures": [
         "$0.10"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.hetzner.com/cloud/regular-performance/": {
       "figures": [
@@ -702,7 +666,7 @@
         "€30.49",
         "€32.49",
         "€35.99",
-        "€43.49",
+        "€36.99",
         "€49.49",
         "€5.49",
         "€5.99",
@@ -717,7 +681,7 @@
         "€9.99",
         "€93.99"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://docs.hetzner.com/cloud/billing/faq": {
       "figures": [
@@ -728,7 +692,7 @@
         "€0.658",
         "€3.29"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://docs.hetzner.com/cloud/servers/primary-ips/overview": {
       "figures": [
@@ -737,7 +701,7 @@
         "€0.0008",
         "€0.50"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.hostinger.com/vps-hosting": {
       "figures": [
@@ -755,7 +719,7 @@
         "$623.76",
         "$8.79"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.freestyle.sh/docs/vms/pricing-and-limits": {
       "figures": [
@@ -768,7 +732,7 @@
         "$50",
         "$500"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.freestyle.sh/pricing.md": {
       "figures": [
@@ -781,7 +745,7 @@
         "$50",
         "$500"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.freestyle.sh/pricing": {
       "figures": [
@@ -793,7 +757,7 @@
         "$50",
         "$500"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://hostup.se/legal/terms-of-service-en.pdf": {
       "figures": [
@@ -804,7 +768,7 @@
         "$78",
         "$8"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.hetzner.com/cloud/cost-optimized/": {
       "figures": [
@@ -823,14 +787,15 @@
         "€16.49",
         "€21.49",
         "€29.99",
+        "€36.99",
         "€41.49",
-        "€43.49",
+        "€5.49",
         "€5.99",
         "€6.49",
         "€78.70",
         "€8.99"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://website-price-api.hetzner.com/api/v1/products/CLOUD_124": {
       "figures": [
@@ -851,18 +816,18 @@
         "SIN1:prices.monthly=26.49EUR",
         "SIN1:prices.monthly=30.99USD"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://cart.hostinger.com/api/v1/catalog/hostingercom-vps-kvm1?brand_name=hostinger.com&currency_code=USD": {
       "figures": [
-        "hostingercom-agentscredits-1000-usd-na:base_price=1000USD",
-        "hostingercom-agentscredits-1000-usd-na:price=1000USD",
-        "hostingercom-agentscredits-2000-usd-na:base_price=2000USD",
-        "hostingercom-agentscredits-2000-usd-na:price=2000USD",
-        "hostingercom-agentscredits-500-usd-na:base_price=500USD",
-        "hostingercom-agentscredits-500-usd-na:price=500USD",
-        "hostingercom-agentscredits-5000-usd-na:base_price=5000USD",
-        "hostingercom-agentscredits-5000-usd-na:price=5000USD",
+        "hostingercom-agentscredits-1000-usd-na:base_price=999USD",
+        "hostingercom-agentscredits-1000-usd-na:price=999USD",
+        "hostingercom-agentscredits-2000-usd-na:base_price=1999USD",
+        "hostingercom-agentscredits-2000-usd-na:price=1999USD",
+        "hostingercom-agentscredits-500-usd-na:base_price=499USD",
+        "hostingercom-agentscredits-500-usd-na:price=499USD",
+        "hostingercom-agentscredits-5000-usd-na:base_price=4999USD",
+        "hostingercom-agentscredits-5000-usd-na:price=4999USD",
         "hostingercom-dailybackup-kvm1-usd-1m:price=300USD",
         "hostingercom-dailybackup-kvm1-usd-1y:price=3600USD",
         "hostingercom-dailybackup-kvm1-usd-2y:price=7200USD",
@@ -1030,18 +995,18 @@
         "hostingercom-vpslicense-webuzopersonal-usd-5y:price=12000USD",
         "hostingercom-vpslicense-webuzopersonal-usd-6m:price=1200USD"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://cart.hostinger.com/api/v1/catalog/hostingercom-vps-kvm2?brand_name=hostinger.com&currency_code=USD": {
       "figures": [
-        "hostingercom-agentscredits-1000-usd-na:base_price=1000USD",
-        "hostingercom-agentscredits-1000-usd-na:price=1000USD",
-        "hostingercom-agentscredits-2000-usd-na:base_price=2000USD",
-        "hostingercom-agentscredits-2000-usd-na:price=2000USD",
-        "hostingercom-agentscredits-500-usd-na:base_price=500USD",
-        "hostingercom-agentscredits-500-usd-na:price=500USD",
-        "hostingercom-agentscredits-5000-usd-na:base_price=5000USD",
-        "hostingercom-agentscredits-5000-usd-na:price=5000USD",
+        "hostingercom-agentscredits-1000-usd-na:base_price=999USD",
+        "hostingercom-agentscredits-1000-usd-na:price=999USD",
+        "hostingercom-agentscredits-2000-usd-na:base_price=1999USD",
+        "hostingercom-agentscredits-2000-usd-na:price=1999USD",
+        "hostingercom-agentscredits-500-usd-na:base_price=499USD",
+        "hostingercom-agentscredits-500-usd-na:price=499USD",
+        "hostingercom-agentscredits-5000-usd-na:base_price=4999USD",
+        "hostingercom-agentscredits-5000-usd-na:price=4999USD",
         "hostingercom-dailybackup-kvm2-usd-1m:price=600USD",
         "hostingercom-dailybackup-kvm2-usd-1y:price=7200USD",
         "hostingercom-dailybackup-kvm2-usd-2y:price=14400USD",
@@ -1209,18 +1174,18 @@
         "hostingercom-vpslicense-webuzopersonal-usd-5y:price=12000USD",
         "hostingercom-vpslicense-webuzopersonal-usd-6m:price=1200USD"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://cart.hostinger.com/api/v1/catalog/hostingercom-vps-kvm4?brand_name=hostinger.com&currency_code=USD": {
       "figures": [
-        "hostingercom-agentscredits-1000-usd-na:base_price=1000USD",
-        "hostingercom-agentscredits-1000-usd-na:price=1000USD",
-        "hostingercom-agentscredits-2000-usd-na:base_price=2000USD",
-        "hostingercom-agentscredits-2000-usd-na:price=2000USD",
-        "hostingercom-agentscredits-500-usd-na:base_price=500USD",
-        "hostingercom-agentscredits-500-usd-na:price=500USD",
-        "hostingercom-agentscredits-5000-usd-na:base_price=5000USD",
-        "hostingercom-agentscredits-5000-usd-na:price=5000USD",
+        "hostingercom-agentscredits-1000-usd-na:base_price=999USD",
+        "hostingercom-agentscredits-1000-usd-na:price=999USD",
+        "hostingercom-agentscredits-2000-usd-na:base_price=1999USD",
+        "hostingercom-agentscredits-2000-usd-na:price=1999USD",
+        "hostingercom-agentscredits-500-usd-na:base_price=499USD",
+        "hostingercom-agentscredits-500-usd-na:price=499USD",
+        "hostingercom-agentscredits-5000-usd-na:base_price=4999USD",
+        "hostingercom-agentscredits-5000-usd-na:price=4999USD",
         "hostingercom-dailybackup-kvm4-usd-1m:price=1200USD",
         "hostingercom-dailybackup-kvm4-usd-1y:price=14400USD",
         "hostingercom-dailybackup-kvm4-usd-2y:price=28800USD",
@@ -1388,18 +1353,18 @@
         "hostingercom-vpslicense-webuzopersonal-usd-5y:price=12000USD",
         "hostingercom-vpslicense-webuzopersonal-usd-6m:price=1200USD"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://cart.hostinger.com/api/v1/catalog/hostingercom-vps-kvm8?brand_name=hostinger.com&currency_code=USD": {
       "figures": [
-        "hostingercom-agentscredits-1000-usd-na:base_price=1000USD",
-        "hostingercom-agentscredits-1000-usd-na:price=1000USD",
-        "hostingercom-agentscredits-2000-usd-na:base_price=2000USD",
-        "hostingercom-agentscredits-2000-usd-na:price=2000USD",
-        "hostingercom-agentscredits-500-usd-na:base_price=500USD",
-        "hostingercom-agentscredits-500-usd-na:price=500USD",
-        "hostingercom-agentscredits-5000-usd-na:base_price=5000USD",
-        "hostingercom-agentscredits-5000-usd-na:price=5000USD",
+        "hostingercom-agentscredits-1000-usd-na:base_price=999USD",
+        "hostingercom-agentscredits-1000-usd-na:price=999USD",
+        "hostingercom-agentscredits-2000-usd-na:base_price=1999USD",
+        "hostingercom-agentscredits-2000-usd-na:price=1999USD",
+        "hostingercom-agentscredits-500-usd-na:base_price=499USD",
+        "hostingercom-agentscredits-500-usd-na:price=499USD",
+        "hostingercom-agentscredits-5000-usd-na:base_price=4999USD",
+        "hostingercom-agentscredits-5000-usd-na:price=4999USD",
         "hostingercom-dailybackup-kvm8-usd-1m:price=2400USD",
         "hostingercom-dailybackup-kvm8-usd-1y:price=28800USD",
         "hostingercom-dailybackup-kvm8-usd-2y:price=57600USD",
@@ -1567,7 +1532,7 @@
         "hostingercom-vpslicense-webuzopersonal-usd-5y:price=12000USD",
         "hostingercom-vpslicense-webuzopersonal-usd-6m:price=1200USD"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://cloud.hostup.se/api/v2/products/vps": {
       "figures": [
@@ -1642,7 +1607,7 @@
         "vps-xxl:configurableOptions.pricing.amount=1SEK",
         "vps-xxl:configurableOptions.pricing.amount=5.94SEK"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://aws.amazon.com/lightsail/pricing/": {
       "figures": [
@@ -1773,7 +1738,7 @@
         "$96",
         "$980"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-bundles.html": {
       "figures": [
@@ -1865,7 +1830,7 @@
         "$9.50",
         "$96.00"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-frequently-asked-questions-faq-billing-and-account-management.html": {
       "figures": [
@@ -1885,7 +1850,7 @@
         "$5",
         "$9.50"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonLightsail/current/us-east-1/index.json": {
       "figures": [
@@ -2012,7 +1977,7 @@
         "$5.64516",
         "$5.65054"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-faq-data-transfer-allowance.html": {
       "figures": [
@@ -2029,7 +1994,7 @@
         "$5",
         "$7"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://us.ovhcloud.com/vps/": {
       "figures": [
@@ -2039,7 +2004,7 @@
         "$4.54",
         "$8.50"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://api.us.ovhcloud.com/1.0/order/catalog/public/vps?ovhSubsidiary=US": {
       "figures": [
@@ -2391,14 +2356,14 @@
         "$980.63",
         "$99.00"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://techdocs.akamai.com/cloud-computing/docs/understanding-how-billing-works": {
       "figures": [
         "$5",
         "$50.00"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://api.linode.com/v4/linode/types": {
       "figures": [
@@ -2924,13 +2889,13 @@
         "id-cgk:monthly=94.39",
         "id-cgk:monthly=96"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://docs.vultr.com/support/platform/billing/does-vultr-charge-for-stored-snapshots": {
       "figures": [
         "$0.05"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://api.vultr.com/v2/plans?per_page=500": {
       "figures": [
@@ -3128,6 +3093,10 @@
         "vhf-4c-16gb:monthly_cost_preemptible=96",
         "vhf-6c-24gb:hourly_cost=0.197",
         "vhf-6c-24gb:hourly_cost_preemptible=0.197",
+        "vhf-6c-24gb:location_cost.sao.hourly_cost=0.296",
+        "vhf-6c-24gb:location_cost.sao.hourly_cost_preemptible=0.296",
+        "vhf-6c-24gb:location_cost.sao.monthly_cost=216",
+        "vhf-6c-24gb:location_cost.sao.monthly_cost_preemptible=216",
         "vhf-6c-24gb:monthly_cost=144",
         "vhf-6c-24gb:monthly_cost_preemptible=144",
         "vhf-8c-32gb:hourly_cost=0.263",
@@ -3723,7 +3692,7 @@
         "vx1-m-96c-768gb:monthly_cost=2803.2",
         "vx1-m-96c-768gb:monthly_cost_preemptible=2803.2"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.scaleway.com/en/pricing/virtual-instances/": {
       "figures": [
@@ -4011,14 +3980,14 @@
         "€98.98",
         "€992.50"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.scaleway.com/en/pricing/storage/": {
       "figures": [
-        "€0.0000034",
         "€0.000011",
         "€0.000022",
         "€0.000049",
+        "€0.000082",
         "€0.000130",
         "€0.000177",
         "€0.000221",
@@ -4035,7 +4004,7 @@
         "€499",
         "€9000"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.scaleway.com/en/pricing/network/": {
       "figures": [
@@ -4058,11 +4027,11 @@
         "€0.2726",
         "€0.4096",
         "€0.439",
-        "€0.60",
         "€0.6836",
         "€0.941",
         "€0.949",
         "€0.99",
+        "€1.00",
         "€1.0945",
         "€1000",
         "€109.99",
@@ -4092,7 +4061,7 @@
         "€9000",
         "€99"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.scaleway.com/en/blog/a-transparent-update-on-scaleway-pricing/": {
       "figures": [
@@ -4232,13 +4201,13 @@
         "€679.99",
         "€739.99"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.scaleway.com/en/docs/billing/faq/": {
       "figures": [
         "€0"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://docs.boat.dev/limits": {
       "figures": [
@@ -4254,7 +4223,7 @@
         "$500",
         "$80"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.daytona.com/pricing": {
       "figures": [
@@ -4282,9 +4251,10 @@
         "$373",
         "$4.30",
         "$5.17",
+        "$50",
         "$91"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.daytona.com/docs/billing.md": {
       "figures": [
@@ -4310,24 +4280,28 @@
         "$0.004",
         "$0.02",
         "$0.08",
-        "$0.45",
+        "$0.225",
+        "$0.375",
+        "$0.425",
+        "$0.49",
+        "$0.572",
+        "$0.625",
         "$0.64",
-        "$0.75",
         "$0.765",
-        "$0.85",
-        "$1.25",
         "$1.53",
-        "$10.80",
+        "$10.20",
         "$100",
-        "$18.00",
+        "$15.00",
+        "$2.09",
+        "$2.292",
         "$20",
-        "$20.40",
-        "$3.49",
-        "$30.00",
-        "$4.17",
-        "$500"
+        "$3.00",
+        "$3.68",
+        "$5.40",
+        "$500",
+        "$9.00"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://lizard.build/docs/platform/billing": {
       "figures": [
@@ -4349,7 +4323,7 @@
         "$5",
         "$99"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://tierhive.com/": {
       "figures": [
@@ -4365,7 +4339,7 @@
         "$3.37",
         "$5.44"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://tierhive.com/api/pricing.php": {
       "figures": [
@@ -4398,17 +4372,19 @@
         ":network_tiers.token_cost_per_hour=0.000020",
         ":network_tiers.token_cost_per_hour=0.000030"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://lowendspirit.com/discussion/11534/tierhive-19-locations-build-your-own-vps-plan-from-0-10-p-month-or-0-000135-per-hour": {
       "figures": [
         "$0.000135",
         "$0.10",
-        "$0.50",
-        "$18.18",
-        "$5"
+        "$5",
+        "$7",
+        "$7.28",
+        "$8.32",
+        "£2.50"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://tierhive.com/blog/general/what-is-an-hourly-vps-and-why-you-might-want-one": {
       "figures": [
@@ -4425,7 +4401,7 @@
         "$5",
         "$5.00"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
     },
     "https://www.daytona.com/pricing.md": {
       "figures": [
@@ -4462,11 +4438,81 @@
         "$4.30",
         "$4.99",
         "$5.17",
+        "$50",
         "$6.20",
         "$7.49",
         "$8.99"
       ],
-      "seen": "2026-11-16"
+      "seen": "2026-11-23"
+    },
+    "https://docs.hosthatch.com/api/orders-and-payment/": {
+      "figures": [
+        "$4",
+        "$500"
+      ],
+      "seen": "2026-11-23"
+    },
+    "https://withruntime.com/docs/reference/pricing": {
+      "figures": [
+        "$0",
+        "$0.001",
+        "$0.008",
+        "$0.02",
+        "$0.03",
+        "$0.10",
+        "$0.18",
+        "$0.20",
+        "$100",
+        "$1000",
+        "$110",
+        "$24990",
+        "$25",
+        "$250",
+        "$3000",
+        "$499",
+        "$4990",
+        "$5",
+        "$50",
+        "$500",
+        "$575",
+        "$99",
+        "$990"
+      ],
+      "seen": "2026-11-23"
+    },
+    "https://withruntime.com/pricing": {
+      "figures": [
+        "$0",
+        "$0.001",
+        "$0.008",
+        "$0.02",
+        "$0.03",
+        "$0.10",
+        "$0.18",
+        "$0.20",
+        "$100",
+        "$1000",
+        "$11",
+        "$110",
+        "$2499",
+        "$24990",
+        "$25",
+        "$250",
+        "$2575",
+        "$3000",
+        "$499",
+        "$4990",
+        "$5",
+        "$50",
+        "$500",
+        "$501",
+        "$510",
+        "$575",
+        "$76",
+        "$99",
+        "$990"
+      ],
+      "seen": "2026-11-23"
     }
   }
 }

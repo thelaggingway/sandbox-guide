@@ -2682,7 +2682,7 @@
           "provider": "instabox",
           "verdict": "yes",
           "figure": "NVIDIA L4, $0.64/GPU-hour",
-          "note": "Paid plans only: 1 to 4 L4s per machine and 8 per workspace, each bringing 11 vCPU and 36 GiB. NVIDIA H100 PCIe is $3.49 per GPU-hour.",
+          "note": "Paid plans only: 1 to 4 L4s per machine and 8 per workspace, each bringing 11 vCPU and 36 GiB. NVIDIA H100 PCIe is $3.00 per GPU-hour; A100-SXM4-40GB is $2.09 and Tesla T4 is $0.49.",
           "source": {
             "url": "https://instabox.sh/docs/account/pricing.md",
             "quote": "NVIDIA L4 (`l4`) | $0.64 per GPU-hour | 11 vCPU / 36 GiB | $0.765 per hour",
@@ -21865,12 +21865,13 @@
         },
         {
           "provider": "runtime",
-          "verdict": "yes",
-          "figure": "none",
+          "verdict": "no",
+          "figure": "Pro $25 / month",
+          "shortfall": "Every plan has a monthly fee that comes back as usage: Pro $25, Growth $99, Scale $499. There is no pay-as-you-go-only option.",
           "source": {
             "url": "https://withruntime.com/docs/pricing",
-            "quote": "There is no plan fee.",
-            "confidence": "docs-confirmed"
+            "quote": "The fee is returned as usage: on Pro, the first $25 of usage each month is included.",
+            "confidence": "pricing-page"
           }
         },
         {
@@ -22520,13 +22521,13 @@
         {
           "provider": "runtime",
           "verdict": "partly",
-          "figure": "100 h/mo after $10",
+          "figure": "7-day Pro trial, $5",
           "source": {
-            "url": "https://withruntime.com/pricing",
-            "quote": "Once an account has paid, 100 free hours of a 1 GB machine is included every month, renewed on the 1st: 100 GiB-hours of memory and 25 vCPU-hours of active CPU.",
+            "url": "https://withruntime.com/docs/pricing",
+            "quote": "Adding the card starts the 7-day Pro trial with $5 of usage.",
             "confidence": "pricing-page"
           },
-          "shortfall": "The 100 free hours return every month, but only after you have bought at least $10 of credit; a new account gets nothing before it pays. Accounts opened before 10 November 2026 keep any free hours they had left."
+          "shortfall": "There is no free plan. Signing up takes no card; creating a machine asks for one and starts a 7-day Pro trial with $5 of usage. After that the cheapest plan is Pro at $25 a month."
         },
         {
           "provider": "sandboxer",
@@ -22848,12 +22849,12 @@
         {
           "provider": "runtime",
           "verdict": "partly",
-          "figure": "matched credit",
-          "shortfall": "There is no plain signup credit; whatever you add in your first 30 days is doubled, up to $1,000, so the required first $10 becomes $20.",
+          "figure": "$5 on the trial",
+          "shortfall": "The 7-day Pro trial includes $5 of usage. There is no matched first-purchase credit.",
           "source": {
             "url": "https://withruntime.com/docs/pricing",
-            "quote": "Credit your organization adds within 30 days of signing up is matched with credit, up to $1,000 in total.",
-            "confidence": "docs-confirmed"
+            "quote": "Adding the card starts the 7-day Pro trial with $5 of usage.",
+            "confidence": "pricing-page"
           }
         },
         {
@@ -23172,13 +23173,13 @@
         {
           "provider": "runtime",
           "verdict": "partly",
-          "figure": "Credit first; USDC",
+          "figure": "Card at first sandbox",
           "source": {
-            "url": "https://withruntime.com/docs/pricing.md",
-            "quote": "There is no sign-in, no browser and no card, and no free trial.",
-            "confidence": "docs-confirmed"
+            "url": "https://withruntime.com/docs/pricing",
+            "quote": "Signing up takes no card. Creating a machine needs one",
+            "confidence": "pricing-page"
           },
-          "shortfall": "A new account must add credit, from $10, before its first sandbox; the only card-free route pays in USDC, with no free trial and no welcome match until a person takes the account over."
+          "shortfall": "Signing up takes no card. Creating a machine asks for one and starts the 7-day Pro trial."
         },
         {
           "provider": "sandboxer",

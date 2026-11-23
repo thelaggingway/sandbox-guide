@@ -34,8 +34,12 @@ const handWorked: [string, "a" | "b" | "c", number][] = [
   // C: CPU bills at least 20% of 2 vCPU (pricing page, 2026-11-12), so 0.4 core × $0.07 × 90 + 4 × $0.015 × 90
   // + 20 × $0.0002 × 90 + 640 h × 20 GB × $0.07 / 720 = $9.52.
   ["tensorlake", "a", 22], ["tensorlake", "b", 250], ["tensorlake", "c", 9.52],
-  // Active CPU + memory + decimal-GB disk at $0.08 / 720 (first 10 GiB free while running), less 25 vCPU-h and 100 GiB-h a month.
-  ["runtime", "a", 7.79], ["runtime", "b", 53.21], ["runtime", "c", 3.58],
+  // Runtime Pro $25 whose fee returns as usage (docs 2026-11-23): CPU $0.03/busy-vCPU-h with a 0.1 floor, RAM $0.008/GB-h,
+  // running disk $0.10/GB-month and paused disk $0.18/GB-month (decimal GB, /720). A and C stay under the $25 credit.
+  // A: 166.67 h × (max(0.1, 2×0.5)×$0.03 + 4×$0.008) + 10 GiB as 10.74 GB × $0.10/720 × 166.67 = $10.58 usage → $25.
+  // B: 730 h × (0.4×$0.03 + 8×$0.008) + 50 GiB as 53.69 GB × $0.10/720 × 730 = $60.92, $35.92 over the credit.
+  // C: 90 h × (0.2×$0.03 + 4×$0.008) + 20 GiB as 21.47 GB × ($0.10/720×90 + $0.18/720×640) = $7.12 usage → $25.
+  ["runtime", "a", 25], ["runtime", "b", 60.92], ["runtime", "c", 25],
   // 1,000 runs at the $0.01 minimum; 730 h capped at $48; 90 on + 640 powered off, capped at $24.
   ["digitalocean", "a", 10], ["digitalocean", "b", 48], ["digitalocean", "c", 24],
   // 1,000 servers × 1 h (rounded up) × $0.0368 + 1,000 IPv4-hours × $0.001; min(730 h × $0.0673, $41.99) + $0.60 IPv4; CPX22 capped at $22.99 + $0.60.
