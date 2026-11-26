@@ -415,6 +415,18 @@
         "quote": "The term of this Agreement shall begin upon the date the server is installed and made available to customer and shall be for 1 month (or any other billing period selected by the customer) and shall renew for the same successive terms until terminated",
         "confidence": "docs-confirmed"
       }
+    },
+    {
+      "provider": "styne",
+      "verdict": "yes",
+      "figure": "Pause: memory by default",
+      "scenario": "A pause keeps the process, its memory and its open files, and no timeout runs while it is paused. Stop is pause plus resume, not a separate state.",
+      "note": "Three pause tiers: memory (the default, kept on the node), standby (memory saved to disk) and archived (also sealed in object storage); all resume with the process and its open files. Pause until you kill it. A sandbox with a volume cannot pause and is killed at its timeout. Timeout is 1 to 86,400 seconds from create, and `onTimeout: pause` turns a timeout into a pause.",
+      "source": {
+        "url": "https://docs.styne.ai/pause-tiers.md",
+        "quote": "A pause keeps a sandbox's state so a resume is transparent: the process, its memory and its open files are where they\nwere.",
+        "confidence": "docs-confirmed"
+      }
     }
   ],
   "figureLabel": "What a pause keeps",

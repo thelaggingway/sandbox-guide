@@ -388,6 +388,18 @@
         "quote": "We support both dynamic (DHCP) and static IPv4 configuration.",
         "confidence": "docs-confirmed"
       }
+    },
+    {
+      "provider": "styne",
+      "verdict": "yes",
+      "figure": "Token by default",
+      "scenario": "A dev server on port 3000 gets https://3000-<id>.styne.ai; a client needs the sandbox's traffic token until the port is marked public, and the same machine is reachable over stock SSH at ssh.styne.ai:2222.",
+      "note": "Ports are token-gated by default and can be opened to anyone per port, with at most 32 per sandbox and a URL that dies with it; a paused sandbox does not serve, while one the platform put to sleep wakes on the next connection. SSH is a real front door on 2222 with `-L` and `-R` forwarding, scp/sftp and VS Code Remote-SSH. There is no dedicated browser terminal (a noVNC desktop is available) and non-HTTP services need an SSH forward.",
+      "source": {
+        "url": "https://docs.styne.ai/ports.md",
+        "quote": "A sandbox serves its ports privately: every port needs the sandbox's traffic access token until you expose it as public",
+        "confidence": "docs-confirmed"
+      }
     }
   ],
   "figureLabel": "Who can open the link",

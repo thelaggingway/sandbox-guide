@@ -1,0 +1,99 @@
+{
+  "id": "styne",
+  "name": "Styne",
+  "checkedOn": "2026-11-26",
+  "disclosure": "No battleships.dev figure is used for Styne. Quotes were matched against pages fetched on 2026-11-26 after stripping Markdown emphasis, links and backslash escapes and collapsing whitespace.",
+  "products": [
+    "StyneVM: Linux microVM sandboxes (priced here)",
+    "StyneBrowser: hosted Chromium sessions on the same plan, own meter (browser hours)",
+    "CI runners on microVMs (per second, not priced here)",
+    "Search, fetch and crawl API from prepaid credit (not priced here)"
+  ],
+  "plans": [
+    {
+      "name": "Starter",
+      "monthlyFeeUSD": 20,
+      "includedUsage": "700 VM hours and 350 browser hours, VM hours counted at the 4 vCPU / 8 GB size",
+      "includedUsageUSD": 22.4,
+      "limits": { "maxConcurrent": "200 VMs and 25 browsers", "maxSessionLength": "86,400 s per timeout; extendable with /timeout or /refreshes", "maxSize": "8 vCPU / 16 GB" },
+      "url": "https://docs.styne.ai/billing.md",
+      "quote": "One subscription covers StyneVM and StyneBrowser. Styne Starter ($20 a month) starts with a 7-day free trial (card required)"
+    },
+    {
+      "name": "Starter trial",
+      "monthlyFeeUSD": 0,
+      "includedUsage": "7 days; 20 VM hours and 20 browser hours; 3 VMs and 2 browsers at once; card required",
+      "url": "https://docs.styne.ai/billing.md",
+      "quote": "The 7-day trial of the Starter plan has smaller limits: 3 VMs and 2 browsers at once, 150 new a day, 20 VM hours and 20 browser hours, 10 saved snapshots."
+    },
+    {
+      "name": "Pro",
+      "monthlyFeeUSD": 99,
+      "includedUsage": "4,000 VM hours and 2,500 browser hours; checkpoint and rewind",
+      "includedUsageUSD": 128,
+      "limits": { "maxConcurrent": "1,000 VMs and 100 browsers", "maxSize": "8 vCPU / 16 GB" },
+      "url": "https://styne.ai/pricing",
+      "quote": "4,000 VM hours and 2,500 browser hours included"
+    },
+    {
+      "name": "Scale",
+      "monthlyFeeUSD": 499,
+      "includedUsage": "14,000 VM hours and 7,500 browser hours",
+      "includedUsageUSD": 448,
+      "limits": { "maxConcurrent": "2,000 VMs and 300 browsers", "maxSize": "16 vCPU / 32 GB" },
+      "url": "https://styne.ai/pricing",
+      "quote": "14,000 VM hours and 7,500 browser hours included"
+    }
+  ],
+  "compute": {
+    "model": "fixed sizes, flat hourly price per size after the plan's included hours",
+    "cpuBilledOn": "allocated (the whole size while running, idle included); shared CPU with a 16% per-vCPU baseline and burst credit",
+    "billingIncrement": "1 second",
+    "minimum": "A plan or the trial is required; no plan-free use",
+    "hourCounting": {
+      "rule": "Included VM hours are counted at the 4 vCPU / 8 GB size: small uses half an hour per hour, large two, xlarge four. Changed 2026-11-26.",
+      "url": "https://docs.styne.ai/limits.md",
+      "quote": "VM hours are counted at the 4 vCPU / 8 GB size: an hour on small uses half an hour, on large two, on xlarge four."
+    },
+    "sizes": [
+      { "name": "small", "vcpu": 2, "ramGiB": 4, "includedDiskGiB": 51, "hourlyUSD": 0.016, "url": "https://docs.styne.ai/billing.md", "quote": "small | 2 vCPU, 4 GB | $0.016" },
+      { "name": "default", "vcpu": 4, "ramGiB": 8, "includedDiskGiB": 51, "hourlyUSD": 0.032, "url": "https://docs.styne.ai/billing.md", "quote": "default | 4 vCPU, 8 GB | $0.032" },
+      { "name": "large", "vcpu": 8, "ramGiB": 16, "includedDiskGiB": 111, "hourlyUSD": 0.064, "url": "https://docs.styne.ai/billing.md", "quote": "large | 8 vCPU, 16 GB | $0.064" },
+      { "name": "xlarge", "vcpu": 16, "ramGiB": 32, "includedDiskGiB": 251, "hourlyUSD": 0.128, "url": "https://docs.styne.ai/billing.md", "quote": "xlarge | 16 vCPU, 32 GB | $0.128" }
+    ],
+    "unitNote": "The billing and pricing pages say GB; the limits page says GiB for the same sizes. The site uses GiB.",
+    "rateDate": {
+      "url": "https://docs.styne.ai/billing.md",
+      "quote": "These hourly rates apply from 2026-11-20 (UTC)"
+    }
+  },
+  "storage": {
+    "runningDisk": "Included with the size; not charged separately",
+    "pausedSandbox": "$0 on the pricing and billing pages; the billing page also says paused sandboxes are metered at the pause tier's rate (none published)",
+    "snapshotsAndVolumes": {
+      "rateUSD": 0,
+      "url": "https://docs.styne.ai/billing.md",
+      "quote": "it is billed at the same stored-GiB rate as saved snapshots, which is $0 today"
+    }
+  },
+  "egress": {
+    "perGiB": null,
+    "note": "Not published on the pricing, billing, limits or network pages. Not assumed free."
+  },
+  "browser": {
+    "overageUSDPerHour": 0.04,
+    "url": "https://docs.styne.ai/billing.md",
+    "quote": "After the included hours, a VM hour is billed by size, and a browser hour costs $0.04."
+  },
+  "search": {
+    "price": "$1 fast, $2 auto, $5 deep per 1,000 blocks of 10 results; fetch and crawl $1 per 1,000 pages; prepaid credit",
+    "contradiction": "The pricing page headline shows \"$0.001 / 1,000 searches in fast mode\"; the billing docs and the pricing FAQ give $1 per 1,000.",
+    "url": "https://docs.styne.ai/billing.md",
+    "quote": "per 1,000 blocks"
+  },
+  "abc": {
+    "A": "small; 166.67 h × $0.016 = $2.67, inside $22.40 → $20.00",
+    "B": "default; 730 h × $0.032 = $23.36; $0.96 over $22.40 → $20.96; needs a keep-alive loop past 24 h",
+    "C": "small; 90 h × $0.016 = $1.44; 640 h paused at $0 → $20.00"
+  }
+}

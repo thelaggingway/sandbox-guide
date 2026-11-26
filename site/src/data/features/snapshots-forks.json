@@ -388,6 +388,18 @@
         "quote": "A snapshot is a copy of a server's disk at one moment.",
         "confidence": "docs-confirmed"
       }
+    },
+    {
+      "provider": "styne",
+      "verdict": "yes",
+      "figure": "Named snapshots; fork to N",
+      "scenario": "You can save a named snapshot with memory, start any number of sandboxes from it, and fork a running sandbox into copies in one call; rewinding in place needs Pro or Scale.",
+      "note": "A snapshot saves memory and disk under a name and starts any number of sandboxes from it. Fork copies a running sandbox into N children and pauses the parent while copying. Checkpoints and rewind, which keep the sandbox id, are Pro and Scale only. Snapshots are taken only when you ask; nothing is scheduled. A sandbox with a volume cannot be snapshotted or forked.",
+      "source": {
+        "url": "https://docs.styne.ai/snapshots.md",
+        "quote": "Save a running sandbox's memory and disk under a name and start any number of sandboxes from it.",
+        "confidence": "docs-confirmed"
+      }
     }
   ],
   "figureLabel": "What a snapshot keeps",

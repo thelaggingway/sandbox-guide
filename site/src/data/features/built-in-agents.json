@@ -388,6 +388,18 @@
         "quote": "We offer pre-ready cloud templates for the major Linux distributions.",
         "confidence": "docs-confirmed"
       }
+    },
+    {
+      "provider": "styne",
+      "verdict": "partly",
+      "figure": "Prompt API; 2 harnesses",
+      "scenario": "Post a prompt with harness claude or codex and your own model key: the first turn installs the harness from npm, then events stream back and the conversation resumes later.",
+      "note": "No agent in the default image and no model supplied by Styne, so the model bill stays yours. Claude Code and Codex are the only harnesses; no Hermes, OpenClaw, Cursor, Devin or Managed Agents guide. A browser (Chromium over CDP) and a noVNC desktop are separate products.",
+      "source": {
+        "url": "https://docs.styne.ai/agents.md",
+        "quote": "The template does not ship either harness.",
+        "confidence": "docs-confirmed"
+      }
     }
   ],
   "figureLabel": "Agents installed, and promptable?",

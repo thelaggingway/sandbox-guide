@@ -388,6 +388,18 @@
         "quote": "HostHatch will invoice Customer for Fees and Expenses monthly, quarterly, semi-annually or annually.",
         "confidence": "docs-confirmed"
       }
+    },
+    {
+      "provider": "styne",
+      "verdict": "partly",
+      "figure": "$0.032/h + $20 plan",
+      "scenario": "A 2 vCPU / 4 GB box up for 730 hours uses 365 of Starter's 700 counted hours, so the month costs the $20 plan and nothing more; the meter is seconds at the size rate, not measured CPU, and a paused box costs $0.",
+      "note": "Per second at $0.016 / $0.032 / $0.064 / $0.128 an hour by size, after included hours counted at the 4 vCPU / 8 GB size (700 / 4,000 / 14,000 a month). Plans are $20 / $99 / $499. Paused and sleeping VMs and browsers cost $0; volumes and snapshots are $0 today. One billing sentence says a paused sandbox is metered at its pause tier's rate, which contradicts the $0 line.",
+      "source": {
+        "url": "https://docs.styne.ai/billing.md",
+        "quote": "VM hours are counted at the 4 vCPU / 8 GB size: an hour on small uses half an hour, on large two, on xlarge four.",
+        "confidence": "docs-confirmed"
+      }
     }
   ],
   "figureLabel": "The meter",

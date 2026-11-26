@@ -388,6 +388,18 @@
         "quote": "`status` | string | `running`, `stopped` or `suspended`",
         "confidence": "inferred"
       }
+    },
+    {
+      "provider": "styne",
+      "verdict": "partly",
+      "figure": "86,400 s; cron wakes",
+      "scenario": "Twenty minutes of silence costs nothing only if nothing of yours is running; a sandbox with a process keeps running and billing until its timeout, which is at most 86,400 seconds.",
+      "note": "A create's `timeout` counts from the start (300 seconds by default, 86,400 at most) and commands do not reset it; `/timeout` and `/refreshes` move it, so a keep-alive loop can hold a sandbox up across a month. An optional `idleTimeout` of 0 to 3600 seconds sleeps a sandbox that has a process; with no user process the platform sleeps it anyway. Cron and webhook triggers wake a sleeping sandbox.",
+      "source": {
+        "url": "https://docs.styne.ai/pause-tiers.md",
+        "quote": "`timeout` on create is the number of seconds the sandbox lives, from the start: 1 to 86,400, and 300 when you leave it out",
+        "confidence": "docs-confirmed"
+      }
     }
   ],
   "figureLabel": "Idle or lifetime limit",

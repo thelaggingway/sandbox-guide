@@ -433,6 +433,18 @@
         "quote": "HostHatch warrants that the Service(s) shall be provided in a workmanlike and professional manner.",
         "confidence": "docs-confirmed"
       }
+    },
+    {
+      "provider": "styne",
+      "verdict": "partly",
+      "figure": "Styne Labs; no jurisdiction",
+      "scenario": "Procurement gets an entity name with no jurisdiction, no SLA and no SOC 2; the DPA and sub-processor list are public and the status page is a real Better Stack page.",
+      "note": "Styne Labs, with no legal form, jurisdiction, registration or address published and no governing law in the disputes section. No founder, funding or headcount published, and no press coverage found. Public since 12–13 November 2026. Status page: Sandbox API 99.949%, MCP 99.593%, all services online on 26 November 2026. The terms promise no uptime level unless agreed in writing. Public DPA with EU SCCs and five sub-processors. SDKs Apache-2.0; runtime closed.",
+      "source": {
+        "url": "https://styne.ai/legal/terms",
+        "quote": "These terms are an agreement between you and Styne Labs (\"we\", \"us\").",
+        "confidence": "docs-confirmed"
+      }
     }
   ],
   "figureLabel": "Contracting entity; promise",

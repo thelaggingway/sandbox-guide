@@ -349,6 +349,16 @@
             "url": "https://hosthatch.com/products"
           },
           "price": "$6/mo (NVMe 4 GB, 2 cores / 4 GB / 20 GB)"
+        },
+        {
+          "provider": "styne",
+          "tier": "manual",
+          "noTerminal": "no",
+          "what": "No Hermes template or guide: you install it in a base sandbox yourself. A sandbox lives at most 24 hours per timeout, so staying on needs your own keep-alive call to /refreshes or /timeout before each deadline. A webhook trigger can wake a paused sandbox for a Telegram message instead.",
+          "link": {
+            "title": "Styne: wake triggers and schedules",
+            "url": "https://docs.styne.ai/wake-triggers.md"
+          }
         }
       ],
       "picks": [
@@ -805,6 +815,16 @@
             "url": "https://hosthatch.com/products"
           },
           "price": "$6–$9/mo (NVMe 4 GB or 8 GB)"
+        },
+        {
+          "provider": "styne",
+          "tier": "manual",
+          "noTerminal": "no",
+          "what": "No OpenClaw template or guide: you install it in a base sandbox yourself. A sandbox lives at most 24 hours per timeout, so staying on needs your own keep-alive call to /refreshes or /timeout before each deadline. The gateway's address is a styne.ai preview URL; no custom domain is published.",
+          "link": {
+            "title": "Styne: timeouts, pause and resume",
+            "url": "https://docs.styne.ai/pause-tiers.md"
+          }
         }
       ],
       "picks": [
@@ -1308,6 +1328,16 @@
             "url": "https://hosthatch.com/products"
           },
           "price": "$12/mo (NVMe 12 GB)"
+        },
+        {
+          "provider": "styne",
+          "tier": "guide",
+          "noTerminal": "no",
+          "what": "A prompt API runs Claude Code or the Codex CLI in a sandbox with your own model key, streams its events and lets you steer or interrupt it. Neither agent is preinstalled: the first prompt installs it from npm. SSH works with VS Code and Cursor Remote-SSH.",
+          "link": {
+            "title": "Styne: run a coding agent in a sandbox",
+            "url": "https://docs.styne.ai/agents.md"
+          }
         }
       ],
       "picks": [
@@ -1711,6 +1741,16 @@
             "url": "https://docs.hosthatch.com/api/"
           },
           "price": "Not a per-task product; one NVMe 4 GB plan is $6/mo"
+        },
+        {
+          "provider": "styne",
+          "tier": "guide",
+          "noTerminal": "no",
+          "what": "Runs code from the unmodified E2B SDK after changing three environment variables, including E2B's code-interpreter calls in a kernel context. Billed per second from $0.016 an hour after the included hours.",
+          "link": {
+            "title": "Styne: switch from E2B",
+            "url": "https://docs.styne.ai/e2b-drop-in.md"
+          }
         }
       ],
       "picks": [
@@ -2109,6 +2149,17 @@
             "url": "https://hosthatch.com/products"
           },
           "price": "$9–$12/mo (NVMe 8 GB or 12 GB)"
+        },
+        {
+          "provider": "styne",
+          "tier": "preinstalled",
+          "noTerminal": "partly",
+          "what": "Start a cloud Chromium with POST /browsers and pass its cdp_url to Playwright or Puppeteer. The browser sleeps at $0 with its tabs, cookies and memory kept, wakes on the same page, and can be forked into logged-in copies; a dashboard live view lets a person take over for a login or captcha. It is a separate product from the sandbox, on its own meter: 350 browser hours come with the $20 plan, then $0.04 an hour.",
+          "link": {
+            "title": "Styne: browsers",
+            "url": "https://docs.styne.ai/browsers.md"
+          },
+          "price": "$20 a month with 350 browser hours, then $0.04 an hour; sleeping browsers cost $0"
         }
       ],
       "picks": [
@@ -2139,6 +2190,13 @@
           "why": "A full VM runs Chrome headed with Xvfb and noVNC, and a snapshot keeps the installed browser for the next run.",
           "watch": "You install Chromium yourself, and allocated CPU is billed for the whole session.",
           "link": "https://www.freestyle.sh/docs/guides/run-chromium-and-chrome-in-a-sandbox"
+        },
+        {
+          "provider": "styne",
+          "for": "Browsers that stay logged in",
+          "why": "A Chromium per microVM that sleeps at $0 with its tabs and memory kept, forks into parallel logged-in copies, and has a live view with human takeover and a login vault for passwords and two-step codes.",
+          "watch": "Only US East (Ashburn); Amsterdam is coming back later. Checkpoint and rewind need the $99 plan, there is no proxy bandwidth in the plan, and Styne has been public only since November 2026.",
+          "link": "https://docs.styne.ai/browsers.md"
         }
       ],
       "outside": "Browser services such as Browser Use Cloud sell hosted browser time (from $0.02 per browser-hour) without a machine to manage.",
@@ -2501,6 +2559,16 @@
             "url": "https://hosthatch.com/products"
           },
           "price": "$6–$9/mo (NVMe 4 GB or 8 GB)"
+        },
+        {
+          "provider": "styne",
+          "tier": "manual",
+          "noTerminal": "no",
+          "what": "No n8n template or guide: you install it yourself. A sandbox lives at most 24 hours per timeout, so staying on needs your own keep-alive call to /refreshes or /timeout before each deadline. A sandbox with a volume mounted cannot pause at all, and a volume is kept on one machine with no backup.",
+          "link": {
+            "title": "Styne: timeouts, pause and resume",
+            "url": "https://docs.styne.ai/pause-tiers.md"
+          }
         }
       ],
       "picks": [
@@ -2993,6 +3061,16 @@
             "url": "https://hosthatch.com/products"
           },
           "price": "$4/mo (NVMe 2 GB)"
+        },
+        {
+          "provider": "styne",
+          "tier": "guide",
+          "noTerminal": "no",
+          "what": "Styne's wake-trigger recipe fits a bot that receives messages over HTTP: a signed Slack or Telegram webhook wakes the paused sandbox, drops the event in a folder and keeps it awake briefly, so waiting costs nothing. A bot that holds a Discord gateway connection must stay awake, which needs your own keep-alive call every 24 hours.",
+          "link": {
+            "title": "Styne: wake triggers and schedules",
+            "url": "https://docs.styne.ai/wake-triggers.md"
+          }
         }
       ],
       "picks": [
@@ -3406,6 +3484,16 @@
             "url": "https://hosthatch.com/products"
           },
           "price": "$60/mo for five NVMe 12 GB servers"
+        },
+        {
+          "provider": "styne",
+          "tier": "manual",
+          "noTerminal": "no",
+          "what": "One sandbox per developer, reached with stock OpenSSH or the prompt API, inside one account with five roles and per-member spend caps. Claude Code is not preinstalled, each developer must sign in with their own key, and each sandbox needs a keep-alive call to last past 24 hours.",
+          "link": {
+            "title": "Styne: SSH and port forwarding",
+            "url": "https://docs.styne.ai/ssh.md"
+          }
         }
       ],
       "picks": [
@@ -3826,6 +3914,16 @@
             "url": "https://hosthatch.com/products"
           },
           "price": "$4/mo (NVMe 2 GB)"
+        },
+        {
+          "provider": "styne",
+          "tier": "guide",
+          "noTerminal": "no",
+          "what": "A cron schedule trigger on the platform wakes a paused sandbox, hands it the event and lets it pause again, so the schedule fires while the machine sleeps. Styne's cloud browser, sold separately, can do the page loading.",
+          "link": {
+            "title": "Styne: wake triggers and schedules",
+            "url": "https://docs.styne.ai/wake-triggers.md"
+          }
         }
       ],
       "picks": [
@@ -4235,6 +4333,16 @@
             "url": "https://hosthatch.com/products"
           },
           "price": "$4/mo (NVMe 2 GB)"
+        },
+        {
+          "provider": "styne",
+          "tier": "manual",
+          "noTerminal": "no",
+          "what": "Run the server in a sandbox and open its port as a public styne.ai preview URL; no custom domain is published. A sandbox lives at most 24 hours per timeout, so staying on needs your own keep-alive call to /refreshes or /timeout before each deadline. Styne's own MCP server controls sandboxes for your assistant, which is the opposite direction.",
+          "link": {
+            "title": "Styne: ports and preview URLs",
+            "url": "https://docs.styne.ai/ports.md"
+          }
         }
       ],
       "picks": [

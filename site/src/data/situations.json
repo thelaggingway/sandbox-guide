@@ -235,6 +235,11 @@
           "provider": "daytona",
           "why": "Chromium is in the standard image, a 1280x720 desktop ships with the runtime, and computer use exposes mouse, keyboard, screenshots and recording as an API.",
           "watch": "The desktop is Linux-only, there is no GPU desktop, the sandbox is deleted at the session cap, and the standard preview token opens every private port and never expires."
+        },
+        {
+          "provider": "styne",
+          "why": "A hosted Chromium per microVM, separate from the sandbox, that keeps the whole logged-in browser, tabs and memory included, while it sleeps at $0, wakes on the same page and forks into logged-in copies. A live view lets a person take over a login or captcha.",
+          "watch": "It is a separate browser product billed at $0.04 an hour after 350 included hours, runs only in US East, and has no desktop of its own; the company has been public only since November 2026."
         }
       ],
       "sources": [

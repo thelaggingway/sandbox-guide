@@ -1,0 +1,111 @@
+{
+  "provider": "styne",
+  "checkedOn": "2026-11-26",
+  "summary": "A monthly plan with included VM hours, then a flat hourly price per size, billed per second while running; paused costs nothing.",
+  "shapes": [
+    {
+      "name": "small",
+      "vcpu": 2,
+      "ram": 4,
+      "disk": 51,
+      "hourly": 0.016
+    },
+    {
+      "name": "default",
+      "vcpu": 4,
+      "ram": 8,
+      "disk": 51,
+      "hourly": 0.032
+    },
+    {
+      "name": "large",
+      "vcpu": 8,
+      "ram": 16,
+      "disk": 111,
+      "hourly": 0.064
+    },
+    {
+      "name": "xlarge",
+      "vcpu": 16,
+      "ram": 32,
+      "disk": 251,
+      "hourly": 0.128
+    }
+  ],
+  "between": "kept",
+  "sleeps": "Pauses at its timeout when created with onTimeout \"pause\", or after an idleTimeout of up to 3,600 seconds you set; it wakes on the next call or connection, with memory and processes kept.",
+  "cpuSharing": {
+    "label": "Shared, 16% baseline",
+    "detail": "A sandbox on the shared class may use 16% of each vCPU without limit and runs at full speed while it has burst credit; every new sandbox starts with 10 minutes of full speed. A guaranteed class with whole cores is offered to paid accounts when capacity allows.",
+    "source": {
+      "url": "https://docs.styne.ai/limits.md",
+      "quote": "It may use **16 % of each vCPU** without limit (its baseline; 12 % for a 1 vCPU size and 23 % for 16 vCPUs)",
+      "confidence": "docs-confirmed"
+    }
+  },
+  "egress": {
+    "perGiB": null,
+    "note": "Not published: the pricing, billing, limits and network pages give no outbound byte price or monthly allowance. An egress_flood eviction shows outbound traffic is watched, so do not assume it is free. Not priced by the calculator.",
+    "url": "https://docs.styne.ai/billing.md"
+  },
+  "plans": [
+    {
+      "name": "Starter",
+      "fee": 20,
+      "credit": 22.4,
+      "maxVcpu": 8,
+      "maxRam": 16,
+      "note": "700 VM hours included, counted at the 4 vCPU / 8 GB size; at the overage rates that is $22.40 of usage. A 7-day trial (card required, 20 VM hours) comes first."
+    },
+    {
+      "name": "Pro",
+      "fee": 99,
+      "credit": 128,
+      "maxVcpu": 8,
+      "maxRam": 16,
+      "note": "4,000 VM hours included, counted at the 4 vCPU / 8 GB size ($128 of usage); adds checkpoint and rewind."
+    },
+    {
+      "name": "Scale",
+      "fee": 499,
+      "credit": 448,
+      "maxVcpu": 16,
+      "maxRam": 32,
+      "note": "14,000 VM hours included, counted at the 4 vCPU / 8 GB size ($448 of usage); the only plan with the 16 vCPU / 32 GB size."
+    }
+  ],
+  "notes": [
+    "Included VM hours are counted at the 4 vCPU / 8 GB size: an hour on small uses half an included hour, on large two, on xlarge four (since 26 November 2026). Because every size's rate is proportional, the calculator treats each plan's hours as their dollar value at the overage rates.",
+    "Disk is not charged separately: each size comes with its disk (51, 51, 111 or 251 GiB). Saved snapshots and volumes are billed at a stored-GiB rate that is $0 today; no future price is announced.",
+    "A paused sandbox is charged $0 on the pricing and billing pages, but the same billing page also says a paused sandbox is \"metered at its pause tier's rate\", and no tier rate is published. The calculator uses $0.",
+    "A sandbox lives at most 86,400 seconds (24 hours) per timeout. Staying on longer needs a call to /timeout or /refreshes before each deadline; the calculator does not model that loop.",
+    "There is no plan without a fee: an account with no trial or plan cannot start a sandbox. Browser hours (350, 2,500 or 7,500 included, then $0.04 an hour) are a separate meter and not priced here."
+  ],
+  "sources": [
+    {
+      "label": "Plans and billing",
+      "url": "https://docs.styne.ai/billing.md"
+    },
+    {
+      "label": "Pricing",
+      "url": "https://styne.ai/pricing"
+    },
+    {
+      "label": "Limits and sizes",
+      "url": "https://docs.styne.ai/limits.md"
+    },
+    {
+      "label": "Timeouts, pause and resume",
+      "url": "https://docs.styne.ai/pause-tiers.md"
+    }
+  ],
+  "upkeep": {
+    "label": "Updates not published",
+    "detail": "Sandboxes start from Styne's own templates (base is Debian 12) or your saved snapshots. Styne does not say whether a kept or paused sandbox gets operating-system updates; you run apt yourself.",
+    "source": {
+      "url": "https://docs.styne.ai/e2b-drop-in.md",
+      "quote": "`base` is the general Linux image (Debian 12)",
+      "confidence": "docs-confirmed"
+    }
+  }
+}
