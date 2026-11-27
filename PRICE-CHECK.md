@@ -39,6 +39,13 @@ prints one line per page that needs a look:
   public price API, so the script cannot see a Contabo price change at all. Read
   `contabo.com/en-us/vps/` in a browser (or Firecrawl with `maxAge: 0`) every week and compare
   the month-to-month prices with `site/src/data/pricing/contabo.json`.
+- **Styne changes rules without changing figures.** The script reads Styne's billing and
+  pricing pages, but its 26 November 2026 change (included VM hours counted at the
+  4 vCPU / 8 GB size) moved no dollar figure, so the script would not have seen it. Every week,
+  read `docs.styne.ai/changelog.md` for entries since the card's `checkedOn`, and recheck
+  `docs.styne.ai/billing.md` for the included hours, how they are counted, and whether paused
+  sandboxes, snapshots and volumes are still $0. The card's plan `credit` values are
+  included hours × $0.032, so a change to either moves them.
 
 JSON price feeds (Hostinger's cart catalog, HostUp's product API, Hetzner's price API) carry
 bare numbers beside a currency code, so the script records them as
