@@ -388,6 +388,18 @@
         "quote": "Additional bandwidth can be added for $4 per TB by contacting our support.",
         "confidence": "docs-confirmed"
       }
+    },
+    {
+      "provider": "styne",
+      "verdict": "yes",
+      "figure": "Host/CIDR rules",
+      "scenario": "A 400 GB dependency pull runs on the open default; to narrow it you replace the rules on the running sandbox with the package hosts, or close the internet entirely, and no egress rate appears on the bill.",
+      "note": "`allowOut` and `denyOut` take host names, addresses and CIDRs and are enforced outside the sandbox, with the more specific rule winning and a live replacement on a running sandbox. `allow_internet_access: false` makes the allowlist the only way out, and with no host names there is no DNS. No egress price, allowance or fixed outbound address is published; an `egress_flood` eviction shows traffic is watched.",
+      "source": {
+        "url": "https://docs.styne.ai/network.md",
+        "quote": "The rules are enforced outside the sandbox, so nothing inside it can change them.",
+        "confidence": "docs-confirmed"
+      }
     }
   ],
   "figureLabel": "Egress price",

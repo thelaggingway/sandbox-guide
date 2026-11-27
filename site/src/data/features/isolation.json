@@ -381,6 +381,18 @@
         "quote": "You can also upload your own ISO image using our control panel, and deploy it on your VMs with us, just like you would on a bare-metal or a physical server.",
         "confidence": "docs-confirmed"
       }
+    },
+    {
+      "provider": "styne",
+      "verdict": "yes",
+      "figure": "microVM, own kernel",
+      "scenario": "Docker is not in the sandbox image, so that step fails unless you install the engine yourself; the boundary is a microVM with its own kernel, but no page says whether a sandbox may load a kernel module.",
+      "note": "A microVM per sandbox with its own kernel, disk and network. Docker with Buildx is documented only for CI runners, and no page says whether a sandbox may load kernel modules or use /dev/kvm. Images are public ones only from docker.io, ghcr.io and quay.io, up to 10 GiB unpacked.",
+      "source": {
+        "url": "https://styne.ai/sandboxes",
+        "quote": "Each sandbox has its own kernel, disk and network. Nothing is shared with another task.",
+        "confidence": "docs-confirmed"
+      }
     }
   ],
   "figureLabel": "Boundary, and what it allows",

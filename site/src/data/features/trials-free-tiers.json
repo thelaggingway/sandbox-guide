@@ -388,6 +388,18 @@
         "quote": "Our virtual private servers (VPS) carry a 7-day money back guarantee with a valid reason requirement.",
         "confidence": "docs-confirmed"
       }
+    },
+    {
+      "provider": "styne",
+      "verdict": "partly",
+      "figure": "7-day trial, card",
+      "scenario": "The 7-day trial needs a card and stops at 20 VM hours; on day 8 the cheapest way to keep the agent up is Starter at $20 a month with 700 included hours. Without a card, an agent can create an account with 300 seconds in total.",
+      "note": "Starter has a 7-day trial with 3 VMs, 2 browsers and 20 VM hours, card required; Pro and Scale have no trial. An agent-created account gets 300 free sandbox seconds and a claim link, and its key expires after a day if nobody claims it. No free plan: an account with no trial or plan answers 402 plan_required.",
+      "source": {
+        "url": "https://docs.styne.ai/billing.md",
+        "quote": "| Free trial | 7 days, card required | No | No |",
+        "confidence": "docs-confirmed"
+      }
     }
   ],
   "figureLabel": "What you get, and what ends it",

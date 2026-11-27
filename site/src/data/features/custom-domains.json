@@ -397,6 +397,18 @@
         "quote": "We support both dynamic (DHCP) and static IPv4 configuration.",
         "confidence": "inferred"
       }
+    },
+    {
+      "provider": "styne",
+      "verdict": "not-published",
+      "figure": "styne.ai URLs only",
+      "scenario": "Every address Styne hands out is https://<port>-<sandbox id>.styne.ai, so demo.acme.com has no documented way to reach port 3000.",
+      "note": "No docs page, network setting, price-list entry or API operation covers pointing your own hostname at a sandbox, and no own-proxy recipe is documented. Preview URLs are HTTPS on Styne's own domain, so nothing is published about a certificate for a customer's domain either.",
+      "source": {
+        "url": "https://docs.styne.ai/ports.md",
+        "quote": "The URL form is `https://<port>-<sandbox id>.styne.ai`.",
+        "confidence": "not-published"
+      }
     }
   ],
   "figureLabel": "Path to your domain",

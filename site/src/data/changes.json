@@ -1,6 +1,19 @@
 {
   "changes": [
     {
+      "date": "2026-11-26",
+      "title": "Styne added: E2B-compatible microVMs from $0.016 an hour, with cloud browsers that stay logged in",
+      "provider": "styne",
+      "what": "This guide now lists Styne. Its sandboxes are microVMs billed per second by size after a $20, $99 or $499 plan's included hours, with paused time free. Included hours are counted at the 4 vCPU / 8 GB size, a rule Styne changed on 26 November 2026. The date is when this guide checked it, not a launch date.",
+      "sources": [
+        {
+          "url": "https://docs.styne.ai/billing.md",
+          "quote": "After the included hours, a VM hour is billed by size, and a browser hour costs $0.04.",
+          "confidence": "pricing-page"
+        }
+      ]
+    },
+    {
       "date": "2026-11-23",
       "title": "Runtime replaced prepaid credit with monthly plans and new usage rates",
       "provider": "runtime",

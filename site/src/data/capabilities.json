@@ -317,6 +317,17 @@
             "quote": "You can also upload your own ISO image using our control panel, and deploy it on your VMs with us, just like you would on a bare-metal or a physical server.",
             "confidence": "docs-confirmed"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "own kernel microVM",
+          "note": "Each sandbox is a microVM with its own kernel, disk and network; the CI page calls a runner \"isolated like any other Styne VM: its own kernel, no access to the host or to other VMs\". No page names the hypervisor.",
+          "source": {
+            "url": "https://styne.ai/sandboxes",
+            "quote": "Each sandbox has its own kernel, disk and network. Nothing is shared with another task.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -629,6 +640,17 @@
           "source": {
             "url": "https://hosthatch.com/",
             "quote": "You have full root-level access to your VMs.",
+            "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "root by default",
+          "note": "Commands run as root unless the call names another user that exists in the template; the base image has /root as home and sudo installed.",
+          "source": {
+            "url": "https://docs.styne.ai/exec.md",
+            "quote": "`user` (a user that exists in the template; the default is root)",
             "confidence": "docs-confirmed"
           }
         }
@@ -951,6 +973,18 @@
             "quote": "You can also upload your own ISO image using our control panel, and deploy it on your VMs with us, just like you would on a bare-metal or a physical server.",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "Docker in CI image",
+          "shortfall": "Docker with Buildx is documented only in the CI runner image, where the daemon starts with the job; no sandbox template ships Docker and no sandbox page says a daemon can run.",
+          "note": "A sandbox is a full VM with root, so installing Docker is plausible, but nothing published confirms it.",
+          "source": {
+            "url": "https://docs.styne.ai/ci.md",
+            "quote": "The Docker daemon starts by itself when the job starts (about a second), so `docker build`, `docker run` and `docker compose` work in the first step without `sudo dockerd &`",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -1267,6 +1301,17 @@
           "source": {
             "url": "https://hosthatch.com/features",
             "quote": "We offer pre-ready cloud templates for the major Linux distributions.",
+            "confidence": "not-published"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "not-published",
+          "figure": "none published",
+          "note": "No page, plan, size or API field mentions /dev/kvm or nested virtual machines; the OpenAPI document lists 69 paths and none is a virtualisation option.",
+          "source": {
+            "url": "https://styne.ai/openapi.json",
+            "quote": "Isolated Linux sandboxes for AI agents: create from a template, run commands, files, fork, snapshots, pause and resume.",
             "confidence": "not-published"
           }
         }
@@ -1591,6 +1636,18 @@
           "source": {
             "url": "https://hosthatch.com/features",
             "quote": "You can also upload your own ISO image using our control panel, and deploy it on your VMs with us, just like you would on a bare-metal or a physical server.",
+            "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "public registries only",
+          "shortfall": "Only public images on Docker Hub, ghcr.io and quay.io start, at most 10 GiB unpacked; private images are refused with 401 and there is no Dockerfile build — you install into a sandbox and save it as a snapshot.",
+          "note": "A new image is prepared on first use (20 to 60 seconds, answers 202 image_building); five images are always ready; linux/amd64 only; 20 new images an hour per account.",
+          "source": {
+            "url": "https://docs.styne.ai/images.md",
+            "quote": "Public images on Docker Hub (`docker.io`), `ghcr.io` and `quay.io` work; any other registry answers `422 image_registry_not_allowed`.",
             "confidence": "docs-confirmed"
           }
         }
@@ -1922,6 +1979,18 @@
             "quote": "1 AMD EPYC core ( fair share )",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "no",
+          "figure": "4 fixed sizes",
+          "shortfall": "You choose one of four shapes (2/4, 4/8, 8/16, 16/32); naming a CPU or memory number only rounds you up to the smallest shape that has it.",
+          "note": "A sandbox takes the size of its template and your own templates keep the size they were built with; asking a template for more than it has answers 400.",
+          "source": {
+            "url": "https://docs.styne.ai/limits.md",
+            "quote": "A create that names no template and no size gets `default`; one that names only `cpuCount` or `memoryMB` gets the smallest size that has them.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -2250,6 +2319,18 @@
           "source": {
             "url": "https://hosthatch.com/products",
             "quote": "16 AMD EPYC cores ( 8 dedicated, 8 fair-shared cores )",
+            "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "16 vCPU / 32 GiB, Scale",
+          "shortfall": "The 16 vCPU / 32 GiB xlarge is sold only on the $499 Scale plan; Starter and Pro stop at 8 vCPU / 16 GB.",
+          "note": "xlarge carries 251 GiB of disk; the size table is the same on every plan, and the plan caps which shape you may start.",
+          "source": {
+            "url": "https://docs.styne.ai/billing.md",
+            "quote": "| Largest size | 8 vCPU, 16 GB | 8 vCPU, 16 GB | 16 vCPU, 32 GB |",
             "confidence": "docs-confirmed"
           }
         }
@@ -2590,6 +2671,18 @@
             "quote": "The server has changes, such as a new plan, that its next reboot through the API applies.",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "no",
+          "figure": "fixed at create",
+          "shortfall": "A sandbox keeps the size of its template or snapshot and nothing resizes it; the API reference has no resize call and a volume \"cannot be resized\" either.",
+          "note": "Inferred: the 69-path API reference has no sandbox resize operation, and the only resize in the docs changes a terminal's rows and columns.",
+          "source": {
+            "url": "https://docs.styne.ai/limits.md",
+            "quote": "A sandbox takes the size of its template; your own templates keep the size they were built with.",
+            "confidence": "inferred"
+          }
         }
       ]
     },
@@ -2920,6 +3013,17 @@
             "quote": "We sell only two types of no-frills IaaS - Compute and Storage",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "not-published",
+          "figure": "no GPU size",
+          "note": "No size, plan, price line or API field mentions a GPU; every published shape is 2 to 16 vCPU with 4 to 32 GiB and no accelerator, and every price is a VM hour.",
+          "source": {
+            "url": "https://styne.ai/pricing",
+            "quote": "Sizes up to 16 vCPU and 32 GB",
+            "confidence": "not-published"
+          }
         }
       ]
     },
@@ -3245,6 +3349,18 @@
             "quote": "We operate out of 13 global locations",
             "confidence": "docs-confirmed"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "Ashburn only",
+          "shortfall": "One region is live (US East, Ashburn); `ams` is accepted but served in Ashburn and the answer says `ash`, so naming a region does not move the machine.",
+          "note": "GET /regions reports available per region and the dashboard picker reads the same list; eu, eu-central, us-east and ashburn are accepted as aliases; snapshot and volume starts stay in their own region.",
+          "source": {
+            "url": "https://docs.styne.ai/regions.md",
+            "quote": "A VM or browser runs in US East (Ashburn). Amsterdam (EU) is coming back later; a create that names ams runs in Ashburn and the answer's region says ash.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -3567,6 +3683,18 @@
             "quote": "Digital Realty AMS18",
             "confidence": "docs-confirmed"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "no",
+          "figure": "Amsterdam dark",
+          "shortfall": "The only EU region, Amsterdam, is \"coming back later\": a create that names `ams` runs in Ashburn. Nothing an EU buyer can select keeps data in the EU today.",
+          "note": "The sub-processor page still lists Hostkey in the Netherlands for sandbox servers, which contradicts the region page.",
+          "source": {
+            "url": "https://docs.styne.ai/regions.md",
+            "quote": "| Europe (Amsterdam) | `ams` | Coming back later. Accepted, served in Ashburn. |",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -3887,6 +4015,17 @@
             "quote": "`status` | string | `running`, `stopped` or `suspended`",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "memory default; 3 tiers",
+          "note": "A pause keeps the process, its memory and its open files; the default `memory` tier keeps them on the node and resumes transparently, and `standby`/`archived` save memory and disk to restore from. A sandbox with a volume mounted cannot pause at all.",
+          "source": {
+            "url": "https://docs.styne.ai/pause-tiers.md",
+            "quote": "A pause keeps a sandbox's state so a resume is transparent: the process, its memory and its open files are where they\nwere.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -4201,6 +4340,16 @@
             "url": "https://hosthatch.com/",
             "quote": "Get online within 60 seconds.",
             "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "shortfall": "Creates draw from a warmed pool you cannot see, size or refill; there is no pool product, so you keep your own spare sandboxes and a create answers in about 0.27 seconds.",
+          "source": {
+            "url": "https://docs.styne.ai/migrate-vercel-modal.md",
+            "quote": "a create answers in about 0.27 seconds, so a pool of 8 served 24 sessions in 0.5 seconds",
+            "confidence": "docs-confirmed"
           }
         }
       ]
@@ -4529,6 +4678,17 @@
             "quote": "Get online within 60 seconds.",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "0.07-0.27 s",
+          "note": "A create answers in about 0.27 seconds and a sandbox from a snapshot starts in 0.07 to 0.26 seconds. Both figures are documentation, not measured here.",
+          "source": {
+            "url": "https://docs.styne.ai/migrate-vercel-modal.md",
+            "quote": "a sandbox from a snapshot starts in 0.07 to 0.26 seconds",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -4847,6 +5007,16 @@
             "quote": "A snapshot is a copy of a server's disk at one moment.",
             "confidence": "docs-confirmed"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "note": "A named snapshot saves the disk, and its files can be listed, downloaded or archived without starting it. Run `sync` first: data not yet flushed to disk is not in the file view.",
+          "source": {
+            "url": "https://docs.styne.ai/snapshots.md",
+            "quote": "You can read the files of a saved snapshot without starting it; the sandbox it came from can be stopped or gone.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -5160,6 +5330,16 @@
             "url": "https://docs.hosthatch.com/api/snapshots/",
             "quote": "A snapshot is a copy of a server's disk at one moment.",
             "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "note": "A sandbox started from a snapshot begins with the saved sandbox's files, processes and memory.",
+          "source": {
+            "url": "https://docs.styne.ai/snapshots.md",
+            "quote": "each one begins exactly where the saved sandbox was: files,\nprocesses and memory included.",
+            "confidence": "docs-confirmed"
           }
         }
       ]
@@ -5475,6 +5655,18 @@
             "url": "https://docs.hosthatch.com/api/snapshots/",
             "quote": "To create a new server from a snapshot, order a server with its `snapshot_id` instead of an `image`.",
             "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "Up to N children",
+          "shortfall": "Forking pauses the parent while it copies memory and disk, and a busy node refuses forks with a 503 that must be retried.",
+          "note": "Forking pauses the parent while it copies memory and disk, then the parent resumes and the children run on their own; children count against concurrency. Under a burst, fewer than a third of forks completed first time (measured on Styne's test region 2026-11-13), so retry with a growing wait.",
+          "source": {
+            "url": "https://docs.styne.ai/fork.md",
+            "quote": "The parent keeps running after the fork",
+            "confidence": "docs-confirmed"
           }
         }
       ]
@@ -5792,6 +5984,17 @@
             "quote": "A snapshot belongs to the project: you can restore it onto any of the project's servers, and it stays when the server it was taken from is gone.",
             "confidence": "docs-confirmed"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "Named; rewind Pro+",
+          "note": "Snapshots are named and listed, and any of them can start a new sandbox. Going back in place, with the same sandbox id, is a checkpoint and rewind, which only Pro and Scale plans have.",
+          "source": {
+            "url": "https://docs.styne.ai/snapshots.md",
+            "quote": "`GET /snapshots` lists your saved snapshots, newest first.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -6104,6 +6307,17 @@
           "source": {
             "url": "https://docs.hosthatch.com/api/snapshots/",
             "quote": "To create a new server from a snapshot, order a server with its `snapshot_id` instead of an `image`.",
+            "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "4 fixed sizes",
+          "shortfall": "There are four fixed templates (2 to 16 vCPU) and your own start state is a snapshot, not a new size: a snapshot keeps the size of the template it came from.",
+          "source": {
+            "url": "https://docs.styne.ai/guide-templates.md",
+            "quote": "A sandbox started from a snapshot has the size of the template the snapshot came from.",
             "confidence": "docs-confirmed"
           }
         }
@@ -6424,6 +6638,16 @@
             "quote": "Daily, weekly or monthly backups - similar to snapshots but fully automated and configurable for 20% of the monthly cost of your VM.",
             "confidence": "not-published"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "no",
+          "note": "Snapshots are taken only when you ask. No page schedules a backup, and a volume is not backed up, so a machine failure loses it.",
+          "source": {
+            "url": "https://docs.styne.ai/volumes.md",
+            "quote": "If the machine itself fails, the volume is lost: a volume is kept on one machine and is not\nbacked up.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -6738,6 +6962,16 @@
           "source": {
             "url": "https://docs.hosthatch.com/api/servers/",
             "quote": "`end_of_term`: the server runs until the end of the period you paid for, then it is deleted.",
+            "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "note": "Pause keeps the files and memory until you kill the sandbox; a pause on timeout does the same. Killing it, or letting it reach a timeout that ends it, loses the disk unless you saved a snapshot.",
+          "source": {
+            "url": "https://docs.styne.ai/billing.md",
+            "quote": "it stays kept, with its files and memory, until you delete it.",
             "confidence": "docs-confirmed"
           }
         }
@@ -7057,6 +7291,17 @@
             "quote": "We sell only two types of no-frills IaaS - Compute and Storage",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "Up to 100 GiB each",
+          "shortfall": "A volume outlives its sandbox, but a sandbox with a volume cannot pause, snapshot, fork or rewind, so it is killed at its timeout.",
+          "source": {
+            "url": "https://docs.styne.ai/volumes.md",
+            "quote": "A sandbox with a volume is killed, not paused, at its timeout: `autoPause` and `lifecycle.onTimeout: \"pause\"` answer\n`422` together with `volumeMounts`.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -7370,6 +7615,16 @@
             "url": "https://docs.hosthatch.com/networking/",
             "quote": "If you enable Private Networking on your VM you will get an additional network interface that you can use for traffic between your own VMs in the same region.",
             "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "no",
+          "note": "A volume is held by one sandbox at a time; a second create naming it gets 409 volume_busy.",
+          "source": {
+            "url": "https://docs.styne.ai/volumes.md",
+            "quote": "One sandbox at a time holds a volume.",
+            "confidence": "docs-confirmed"
           }
         }
       ]
@@ -7690,6 +7945,16 @@
           "source": {
             "url": "https://hosthatch.com/company",
             "quote": "We sell only two types of no-frills IaaS - Compute and Storage",
+            "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "not-published",
+          "note": "Volumes are the only documented external disk, and the full documentation has no S3 or bucket mount. A bucket could only be reached over the network, not mounted as a folder.",
+          "source": {
+            "url": "https://docs.styne.ai/volumes.md",
+            "quote": "A volume is an ext4 disk of fixed size kept on one machine of one [region](https://docs.styne.ai/regions.md).",
             "confidence": "inferred"
           }
         }
@@ -8018,6 +8283,17 @@
             "quote": "our storage VMs are designed for massive storage capacity, scalable up to hundreds of terabytes",
             "confidence": "docs-confirmed"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "51-251 GiB root",
+          "shortfall": "The 111 GiB and 251 GiB disks need the large and xlarge templates, which the Starter plan cannot start (8 vCPU is its largest).",
+          "source": {
+            "url": "https://docs.styne.ai/billing.md",
+            "quote": "| Largest size | 8 vCPU, 16 GB | 8 vCPU, 16 GB | 16 vCPU, 32 GB |",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -8337,6 +8613,17 @@
           "source": {
             "url": "https://docs.hosthatch.com/api/servers/",
             "quote": "`end_of_term`: the server runs until the end of the period you paid for, then it is deleted.",
+            "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "86,400 s; keep-alive",
+          "shortfall": "No single timeout lasts a month (86,400 seconds is the most), so a busy month-long agent must call /refreshes from inside itself before each deadline, and a volume-mounted sandbox cannot pause to bridge a gap.",
+          "source": {
+            "url": "https://docs.styne.ai/pause-tiers.md",
+            "quote": "`/refreshes` keeps the sandbox alive for at least that many more seconds and never\nshortens it, so a keep-alive loop can call it freely.",
             "confidence": "docs-confirmed"
           }
         }
@@ -8660,6 +8947,17 @@
             "quote": "`status` | string | `running`, `stopped` or `suspended`",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "0-3600 s",
+          "shortfall": "The idle sleep you set lasts at most an hour (0 turns it off), and the platform separately sleeps any sandbox where nothing of yours is running.",
+          "source": {
+            "url": "https://docs.styne.ai/pause-tiers.md",
+            "quote": "`\"idleTimeout\": 120` (seconds, 0 to 3600; 0 or absent means none).",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -8971,6 +9269,16 @@
             "url": "https://docs.hosthatch.com/api/actions/",
             "quote": "Power on",
             "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "note": "A webhook trigger wakes a sleeping sandbox and hands it the event; a paused sandbox wakes on the next command, file call or connection. A preview URL does not wake it.",
+          "source": {
+            "url": "https://docs.styne.ai/wake-triggers.md",
+            "quote": "We store it before we answer the sender, wake the sandbox if it sleeps, and hand the event over.",
+            "confidence": "docs-confirmed"
           }
         }
       ]
@@ -9285,6 +9593,17 @@
             "url": "https://docs.hosthatch.com/api/",
             "quote": "The HostHatch API lets your code, scripts and AI agents do what you do in the console: order servers and pay for them with account credit, power and reinstall them, take snapshots, set up firewalls, mount ISOs, and manage SSH keys and reverse DNS.",
             "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "Cron, 100 triggers",
+          "note": "A cron trigger wakes the sleeping sandbox at each slot and delivers the event as a file, command or local HTTP post; missed slots fire once or are skipped. Each wake is billed like a resume.",
+          "source": {
+            "url": "https://docs.styne.ai/wake-triggers.md",
+            "quote": "Five fields (minute hour day-of-month month day-of-week), minute resolution, any IANA time zone.",
+            "confidence": "docs-confirmed"
           }
         }
       ]
@@ -9610,6 +9929,17 @@
           "source": {
             "url": "https://docs.hosthatch.com/networking/",
             "quote": "We support both dynamic (DHCP) and static IPv4 configuration.",
+            "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "Per-port URL",
+          "note": "A port gets its own HTTPS address at `https://<port>-<sandbox id>.styne.ai`; `public: true` opens it to anyone with the link, and a sandbox created through the E2B SDK opens all its ports until a per-port choice overrides it. A sandbox exposes at most 32 ports, and the URL dies with the sandbox.",
+          "source": {
+            "url": "https://docs.styne.ai/ports.md",
+            "quote": "A port a server listens on inside a sandbox is reachable at `https://<port>-<sandbox id>.<domain>`.",
             "confidence": "docs-confirmed"
           }
         }
@@ -9940,6 +10270,17 @@
             "quote": "You cannot access any external networks through this interface.",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "Token by default",
+          "note": "Private is the default: every port needs the sandbox's `trafficAccessToken` in the `e2b-traffic-access-token` header, or as `?token=` on a WebSocket. One token covers the whole sandbox rather than one port, it arrives with the create answer, and no rotation or expiry is documented; a killed sandbox answers 404 to everyone.",
+          "source": {
+            "url": "https://docs.styne.ai/ports.md",
+            "quote": "A sandbox serves its ports privately: every port needs the sandbox's traffic access token (header `e2b-traffic-access-token`, or the `?token=` query for `wss://`) unless you make it public.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -10264,6 +10605,17 @@
           "source": {
             "url": "https://hosthatch.com/",
             "quote": "You have full root-level access to your VMs.",
+            "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "ssh.styne.ai:2222",
+          "note": "Stock OpenSSH, scp, sftp and VS Code or Cursor Remote-SSH against a front door on port 2222, with the sandbox id as the user name and per-sandbox keys (at most 16). A paused sandbox answers 409 and a connection never resumes it; the front door forgets every key on an API restart; a template without sshd answers 422.",
+          "source": {
+            "url": "https://docs.styne.ai/ssh.md",
+            "quote": "Open a sandbox with stock OpenSSH: ssh, scp, sftp, port forwards and the Remote-SSH extension of VS Code and Cursor.",
             "confidence": "docs-confirmed"
           }
         }
@@ -10591,6 +10943,18 @@
             "quote": "Peregrine.Servers.Console.VncSession",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "In the desktop",
+          "shortfall": "There is no dedicated browser terminal documented; the in-browser route is a noVNC desktop opened through the boat-compatible API, where you use a terminal inside the desktop.",
+          "note": "A PTY is also available as a WebSocket to a login shell through the Daytona-compatible API (`create_pty_session`, up to 16 per sandbox), which your own client renders. Neither is a terminal page on Styne's dashboard.",
+          "source": {
+            "url": "https://docs.styne.ai/migrate-boat.md",
+            "quote": "`desktop` starts Xfce on a virtual screen with x11vnc and noVNC and answers a URL of port 6080 that carries the session's VNC password.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -10912,6 +11276,17 @@
             "quote": "You have full root-level access to your VMs.",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "ssh -L and -R",
+          "note": "Both directions over the SSH front door: `-L` puts a sandbox port on your localhost, `-R` puts your local server inside the sandbox for as long as ssh runs. A `-R` listener binds to loopback unless you name another address, and neither makes the port public.",
+          "source": {
+            "url": "https://docs.styne.ai/ssh.md",
+            "quote": "`-L` makes your `localhost:8080` answer with the server on port 3000 inside the sandbox. `-R` makes the sandbox's `127.0.0.1:9000` answer with the server on your machine's port 9000, for as long as `ssh` runs",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -11231,6 +11606,18 @@
             "url": "https://docs.hosthatch.com/api/firewalls/",
             "quote": "A group has a direction, chosen when you create it: `ingress` rules allow traffic to the servers, and `egress` rules allow traffic from them.",
             "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "SSH forward only",
+          "shortfall": "A non-web service is reachable only through an SSH local or remote forward; the public per-port addresses carry HTTPS and WebSocket, and no public raw TCP or UDP address is documented.",
+          "note": "Calls between sandboxes are HTTP too: `ANY https://api.styne.ai/call/{name}/{port}/{path}` forwards to `http://localhost:{port}` inside the named sandbox, and the docs send WebSocket upgrades to an exposed port instead.",
+          "source": {
+            "url": "https://docs.styne.ai/ports.md",
+            "quote": "Websocket upgrades work on the same URL; send the token as `?token=` for a private port.",
+            "confidence": "inferred"
           }
         }
       ]
@@ -11553,6 +11940,17 @@
             "url": "https://docs.hosthatch.com/networking/",
             "quote": "We support both dynamic (DHCP) and static IPv4 configuration.",
             "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "not-published",
+          "figure": "styne.ai URLs only",
+          "note": "Every documented address is `https://<port>-<sandbox id>.styne.ai`. The docs sitemap's 195 pages, the ports, network and billing pages, the pricing page and the sandbox API's 69-path OpenAPI document describe no way to point your own hostname at a sandbox, and no own-proxy recipe is documented either.",
+          "source": {
+            "url": "https://docs.styne.ai/ports.md",
+            "quote": "The URL form is `https://<port>-<sandbox id>.styne.ai`.",
+            "confidence": "not-published"
           }
         }
       ]
@@ -11882,6 +12280,17 @@
             "quote": "The OpenAPI document is at `/api/openapi.json`",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "not-published",
+          "figure": "styne.ai cert only",
+          "note": "Preview URLs are HTTPS on Styne's own domain, so Styne holds a certificate for styne.ai. Nothing is published about a certificate for a hostname you own, and no custom-domain route is documented for one to be issued on.",
+          "source": {
+            "url": "https://docs.styne.ai/ports.md",
+            "quote": "A port a server listens on inside a sandbox is reachable at `https://<port>-<sandbox id>.<domain>`.",
+            "confidence": "not-published"
+          }
         }
       ]
     },
@@ -12206,6 +12615,17 @@
             "quote": "Additional bandwidth can be added for $4 per TB by contacting our support.",
             "confidence": "docs-confirmed"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "not-published",
+          "figure": "no rate or allowance",
+          "note": "The pricing page, billing page and limits page publish per-second VM rates, browser hours, storage and search, fetch and crawl prices, but no outbound byte price or monthly allowance. The errors page names an `egress_flood` eviction, so outbound traffic is watched; unpublished is not free.",
+          "source": {
+            "url": "https://docs.styne.ai/errors.md",
+            "quote": "an eviction for what the sandbox did (`endReason` `evicted`, `endDetail` naming `cpu_hog`, `fork_flood`, `io_hog` or `egress_flood`)",
+            "confidence": "not-published"
+          }
         }
       ]
     },
@@ -12528,6 +12948,17 @@
           "source": {
             "url": "https://docs.hosthatch.com/api/firewalls/",
             "quote": "Once it has an egress group, it also refuses outbound traffic that no egress rule allows.",
+            "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "Host and CIDR lists",
+          "note": "`allowOut` and `denyOut` take host names, IPv4 or IPv6 addresses and CIDR blocks, and `allow_internet_access: false` turns the allowlist into the only way out. Rules are enforced outside the sandbox, the more specific rule wins with an allow winning a tie, a host name follows its DNS answer, and a running sandbox's rules can be replaced in one call.",
+          "source": {
+            "url": "https://docs.styne.ai/network.md",
+            "quote": "Destinations the sandbox may reach: IPv4 or IPv6 addresses, CIDR blocks (`203.0.113.0/24`) and host names (`pypi.org`)",
             "confidence": "docs-confirmed"
           }
         }
@@ -12855,6 +13286,17 @@
             "quote": "A server without groups allows all traffic. Once it has any group attached, it refuses new inbound connections that no ingress rule allows. Once it has an egress group, it also refuses outbound traffic that no egress rule allows.",
             "confidence": "docs-confirmed"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "allow_internet_access",
+          "note": "`allow_internet_access: false` closes the internet and leaves only `allowOut`; with no host names listed there is no DNS either. Mail ports (25, 465, 587), mining ports, the node's own management addresses and other sandboxes stay closed whatever the rules say.",
+          "source": {
+            "url": "https://docs.styne.ai/network.md",
+            "quote": "Default `true`. `false` closes the internet; only what `network.allowOut` lists stays reachable",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -13174,6 +13616,17 @@
             "url": "https://docs.hosthatch.com/networking/",
             "quote": "We support both dynamic (DHCP) and static IPv4 configuration.",
             "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "not-published",
+          "figure": "Not published",
+          "note": "No page describes a dedicated or fixed outbound address, how many a sandbox gets, or a price for one. The network page's rules are destination allow and deny lists only, the pricing page lists no IP charge, and the sandbox OpenAPI has no address operation. Browser sessions take an `egress` route, which is the browser product, not a sandbox address.",
+          "source": {
+            "url": "https://docs.styne.ai/network.md",
+            "quote": "Set the rules on create with `allow_internet_access` and `network`, and replace them later on a running sandbox.",
+            "confidence": "not-published"
           }
         }
       ]
@@ -13500,6 +13953,17 @@
             "quote": "Not available yet: sending it answers `400 feature_unavailable`.",
             "confidence": "docs-confirmed"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "Variables and files",
+          "note": "Secrets live in an account environment as variables (`.env` text) and secret files, and a new sandbox starts with the default environment's set; secret-file contents are write-only, so a read lists the path with empty contents. The documented management routes are the boat-compatible `/boat/v1` ones, and the values arrive inside the sandbox where the agent can read them.",
+          "source": {
+            "url": "https://docs.styne.ai/migrate-boat.md",
+            "quote": "Secrets are the variables (`envContents`, `.env` text) and secret files of the account's default environment, which a new sandbox starts with.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -13822,6 +14286,18 @@
             "url": "https://hosthatch.com/",
             "quote": "You have full root-level access to your VMs.",
             "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "Model keys only",
+          "shortfall": "Only keys for eight named model providers are hidden from the sandbox; any other API key goes in as an environment variable the agent can read.",
+          "note": "The AI credentials proxy gives each sandbox a `styne-ai-...` placeholder and adds the real key only at the provider's fixed address, for Anthropic, OpenAI, OpenRouter, Gemini, DeepSeek, Mistral, xAI and Moonshot. The placeholder is bound to one sandbox and dies with it; sign-in subscriptions, AWS Bedrock and custom APIs go through environment variables instead.",
+          "source": {
+            "url": "https://docs.styne.ai/ai-credentials.md",
+            "quote": "A sandbox calls the provider through the proxy with a placeholder key, and the real key never enters the sandbox",
+            "confidence": "docs-confirmed"
           }
         }
       ]
@@ -14152,6 +14628,17 @@
             "quote": "A key carries your access to every project you belong to.",
             "confidence": "docs-confirmed"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "Presets and scopes",
+          "note": "A key is created with a preset or chosen actions and its scopes can be read and changed later; a key limited to chosen endpoints needs `compat` and otherwise answers 403, and AI credential changes need `ai.manage`. A key acts as the member who created it, and an owner or admin can cap a member's monthly spend. No per-sandbox scope or key expiry is documented.",
+          "source": {
+            "url": "https://docs.styne.ai/tavily-google-drop-in.md",
+            "quote": "A key limited to chosen endpoints needs `compat` (shown as Drop-ins in the dashboard); without it the call answers `403 endpoint_not_allowed`.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -14462,6 +14949,18 @@
           "source": {
             "url": "https://docs.hosthatch.com/api/",
             "quote": "The HostHatch API lets your code, scripts and AI agents do what you do in the console: order servers and pay for them with account credit, power and reinstall them, take snapshots, set up firewalls, mount ISOs, and manage SSH keys and reverse DNS.",
+            "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "Browser yes, VM no",
+          "shortfall": "The dashboard's Browsers page starts a browser session with a button, but no published page shows creating a Linux VM from the dashboard; the quickstart creates VMs from the CLI, an SDK or curl.",
+          "note": "The dashboard covers API keys, the Team page, usage, billing, a CI tab and a sandbox page with CPU metrics and a Region column, but no documented path starts a sandbox there.",
+          "source": {
+            "url": "https://docs.styne.ai/browsers.md",
+            "quote": "The Browsers page lists the account's sessions with their state, region and end time. **Start a browser** starts one",
             "confidence": "docs-confirmed"
           }
         }
@@ -14775,6 +15274,17 @@
             "quote": "The OpenAPI document is at `/api/openapi.json`",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "Linux + macOS",
+          "note": "A static `styne` binary for Linux and macOS on amd64 and arm64, installed by a one-line script that checks the release checksum; it covers create, list, exec, files, pause, resume, fork, snapshots, ports, logs, SSH and browsers.",
+          "source": {
+            "url": "https://docs.styne.ai/cli.md",
+            "quote": "`styne` is a single static binary for Linux and macOS (amd64 and arm64).",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -15085,6 +15595,17 @@
             "url": "https://docs.hosthatch.com/api/quickstart/",
             "quote": "import requests",
             "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "styne-sdk 0.2.2",
+          "note": "Official `styne-sdk` on PyPI (0.2.2, Apache-2.0, Python 3.11+, sync and async clients); the unmodified `e2b` 2.63.0 package also works against api.styne.ai.",
+          "source": {
+            "url": "https://docs.styne.ai/sdks.md",
+            "quote": "| Styne Python | `styne-sdk` (`pip install styne-sdk`, `import styne`)",
+            "confidence": "docs-confirmed"
           }
         }
       ]
@@ -15398,6 +15919,17 @@
             "quote": "The OpenAPI document is at `/api/openapi.json`",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "styne-sdk 0.2.2",
+          "note": "Official `styne-sdk` on npm (0.2.2, Apache-2.0) plus the unmodified E2B JavaScript client.",
+          "source": {
+            "url": "https://docs.styne.ai/sdks.md",
+            "quote": "| Styne TypeScript | `styne-sdk` (`npm install styne-sdk`, `import { Styne } from \"styne-sdk\"`)",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -15710,6 +16242,17 @@
           "source": {
             "url": "https://docs.hosthatch.com/api/",
             "quote": "The OpenAPI document is at `/api/openapi.json`",
+            "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "OpenAPI 3.1",
+          "note": "The sandbox API is at api.styne.ai with an OpenAPI 3.1 document at `/v1/openapi.json` (draft dated 2026-11-16) and a 69-path sandbox spec at styne.ai/openapi.json.",
+          "source": {
+            "url": "https://docs.styne.ai/api-v1.md",
+            "quote": "The v1 API is served at https://api.styne.ai/v1. This reference is generated from the OpenAPI document the API itself serves at /v1/openapi.json",
             "confidence": "docs-confirmed"
           }
         }
@@ -16034,6 +16577,17 @@
             "quote": "These docs are written for people and for agents alike.",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "mcp.styne.ai/mcp",
+          "note": "A hosted stateless MCP Streamable HTTP server with tools to create, list, kill, pause and resume sandboxes, run commands and code, move files, get a preview URL, fork, snapshot and start browsers. Each call uses your own key, so the same limits and bill apply.",
+          "source": {
+            "url": "https://docs.styne.ai/mcp.md",
+            "quote": "Endpoint: `POST /mcp` on the MCP host of your deployment, for example `https://mcp.styne.ai/mcp`.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -16348,6 +16902,17 @@
             "quote": "The HostHatch API lets your code, scripts and AI agents do what you do in the console: order servers and pay for them with account credit, power and reinstall them, take snapshots, set up firewalls, mount ISOs, and manage SSH keys and reverse DNS.",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "pty rows/cols",
+          "note": "`exec` takes a `pty` size and later lines send stdin, resize and signals; `/v1/tickets` mints a WebSocket ticket for a pty, and the Daytona-compatible surface opens up to 16 PTY sessions per sandbox whose output stays readable later.",
+          "source": {
+            "url": "https://docs.styne.ai/exec.md",
+            "quote": "`timeoutMs`, `stdin` (keep stdin open) and `pty` (`{\"rows\": 24, \"cols\": 80}`)",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -16659,6 +17224,16 @@
             "url": "https://docs.hosthatch.com/api/",
             "quote": "The HostHatch API lets your code, scripts and AI agents do what you do in the console: order servers and pay for them with account credit, power and reinstall them, take snapshots, set up firewalls, mount ISOs, and manage SSH keys and reverse DNS.",
             "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "note": "Read, write, delete, list, find by name, find text, replace across files and chmod, plus short-lived signed upload and download URLs; whole folders move as a tar.",
+          "source": {
+            "url": "https://docs.styne.ai/files.md",
+            "quote": "Move files in and out of a sandbox, find and change them in place, and share a file with a link.",
+            "confidence": "docs-confirmed"
           }
         }
       ]
@@ -16985,6 +17560,17 @@
             "quote": "We offer pre-ready cloud templates for the major Linux distributions.",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "no",
+          "figure": "installed on first prompt",
+          "note": "The default `base` template is Linux with Python 3, Node, git and curl; the first prompt installs Claude Code or Codex from npm into `~/.agent/npm`, so nothing is preinstalled.",
+          "source": {
+            "url": "https://docs.styne.ai/agents.md",
+            "quote": "The template does not ship either harness.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -17300,6 +17886,17 @@
             "quote": "The HostHatch API lets your code, scripts and AI agents do what you do in the console: order servers and pay for them with account credit, power and reinstall them, take snapshots, set up firewalls, mount ISOs, and manage SSH keys and reverse DNS.",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "POST …/prompt",
+          "note": "`POST /sandboxes/{id}/prompt` runs Claude Code or Codex in the sandbox, streams typed events, and supports steering, interrupting and resuming a conversation that lives in the sandbox disk. You pass your own model key with every prompt: Styne supplies no model.",
+          "source": {
+            "url": "https://docs.styne.ai/agents.md",
+            "quote": "Run Claude Code or the Codex CLI inside a sandbox with a prompt, follow its events, steer or interrupt it, and resume the conversation later.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -17611,6 +18208,16 @@
           "source": {
             "url": "https://hosthatch.com/features",
             "quote": "We offer pre-ready cloud templates for the major Linux distributions.",
+            "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "no",
+          "note": "No Hermes template, guide or harness: the prompt API takes `claude` or `codex`, and the templates are only small/default/large/xlarge with Python, Node, git and curl. Nothing in the docs corpus mentions Hermes.",
+          "source": {
+            "url": "https://docs.styne.ai/agents.md",
+            "quote": "| `harness` | `claude` (default) or `codex`. |",
             "confidence": "inferred"
           }
         }
@@ -17925,6 +18532,16 @@
           "source": {
             "url": "https://hosthatch.com/features",
             "quote": "We offer pre-ready cloud templates for the major Linux distributions.",
+            "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "no",
+          "note": "No OpenClaw template, guide or gateway walkthrough: the prompt API takes `claude` or `codex`, and nothing in the docs corpus mentions OpenClaw.",
+          "source": {
+            "url": "https://docs.styne.ai/agents.md",
+            "quote": "| `harness` | `claude` (default) or `codex`. |",
             "confidence": "inferred"
           }
         }
@@ -18242,6 +18859,18 @@
             "url": "https://hosthatch.com/features",
             "quote": "We offer pre-ready cloud templates for the major Linux distributions.",
             "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "Cloud browser; $0.04/h",
+          "shortfall": "A hosted cloud browser on its own meter, not a browser in your sandbox: you get one by calling the browser API, and it bills $0.04 an hour while awake (350 hours included on the $20 plan). Styne's own sandbox templates ship no browser: its docs say the browser template \"does not start a sandbox\".",
+          "note": "Chromium in its own microVM, driven over CDP, with a dashboard live view, human takeover, per-end-user profiles and a login vault. Idle browsers sleep at $0 and wake on the same tab, and a logged-in browser can be forked. Checkpoint and rewind need the $99 plan.",
+          "source": {
+            "url": "https://docs.styne.ai/browsers.md",
+            "quote": "A browser session is a Chromium instance in its own microVM that you drive over the Chrome DevTools Protocol (CDP) with Playwright, Puppeteer, Stagehand or Browser Use.",
+            "confidence": "docs-confirmed"
           }
         }
       ]
@@ -18565,6 +19194,18 @@
             "quote": "You can also upload your own ISO image using our control panel, and deploy it on your VMs with us, just like you would on a bare-metal or a physical server.",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "noVNC via /boat/v1",
+          "shortfall": "The Xfce/x11vnc/noVNC desktop is documented only under the boat-compatible routes, not in Styne's own API reference, and it is a VNC screen a person takes over rather than a computer-use API with mouse, keyboard and screenshot calls.",
+          "note": "`desktop` answers a URL on port 6080 carrying the session's VNC password; sandboxes of a `desktop` template have it at once and other sandboxes install it on first call. The native OpenAPI document has no desktop or display path.",
+          "source": {
+            "url": "https://docs.styne.ai/migrate-boat.md",
+            "quote": "`desktop` starts Xfce on a virtual screen with x11vnc and noVNC and answers a URL of port 6080 that carries the session's VNC password.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -18879,6 +19520,17 @@
             "quote": "We offer pre-ready cloud templates for the major Linux distributions.",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "no",
+          "figure": "SDK drop-ins only",
+          "note": "First-party drop-ins cover other sandbox APIs (E2B, Daytona, Vercel Sandbox and Modal, boat, Browserbase, Steel), which lets their clients point at Styne. No guide covers Cursor cloud agents, Devin, Claude Managed Agents or the OpenAI Agents API.",
+          "source": {
+            "url": "https://docs.styne.ai/agents.md",
+            "quote": "Run Claude Code or the Codex CLI inside a sandbox with a prompt",
+            "confidence": "inferred"
+          }
         }
       ]
     },
@@ -19189,6 +19841,17 @@
           "source": {
             "url": "https://docs.hosthatch.com/api/projects-and-roles/",
             "quote": "A project holds servers, SSH keys, firewall groups, snapshots, ISOs, actions and orders, and the people who manage them.",
+            "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "5 roles, one wallet",
+          "note": "An organisation is an account with more than one member: one plan, one set of included hours, one key list and one sandbox list. Members join by email invite, can belong to several accounts, and removing one revokes their keys while their sandboxes keep running.",
+          "source": {
+            "url": "https://docs.styne.ai/organizations.md",
+            "quote": "An organization is an account with more than one member. There is no second wallet: the account's plan, hours included, keys and sandboxes belong to the account",
             "confidence": "docs-confirmed"
           }
         }
@@ -19507,6 +20170,17 @@
             "quote": "Your role in it: `owner`, `admin` or `member`.",
             "confidence": "docs-confirmed"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "5 roles",
+          "note": "Owner, admin, developer, billing and viewer: owner and admin read and write keys, see billing and read the audit log; developer cannot bill; billing cannot use keys; viewer reads only. One owner per account, moved by transfer.",
+          "source": {
+            "url": "https://docs.styne.ai/organizations.md",
+            "quote": "| Role | Keys | Sandboxes and logs | Billing | Members | Audit log |\n| - | - | - | - | - | - |\n| Owner | read, write | yes | yes | manage, transfer | yes |\n| Admin | read, write | yes | yes | manage (not other admins) | yes |\n| Developer | read, write | yes | no | view | no |\n| Billing | no | usage only | yes | view | no |\n| Viewer | read | read | no | view | no |",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -19820,6 +20494,16 @@
             "url": "https://docs.hosthatch.com/api/authentication/",
             "quote": "Keys are created on your profile page, under **API Keys**.",
             "confidence": "not-published"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "not-published",
+          "note": "No SAML, OIDC, SCIM or single sign-on page appears in the docs index, pricing or legal pages; the only documented way in is an email invite, and the sub-processor page says sign-in runs on Styne's own servers with no outside identity provider.",
+          "source": {
+            "url": "https://styne.ai/legal/subprocessors",
+            "quote": "Sign-in runs on our own servers with open-source software; no outside identity provider receives your data.",
+            "confidence": "docs-confirmed"
           }
         }
       ]
@@ -20137,6 +20821,18 @@
             "quote": "HostHatch will invoice Customer for Fees and Expenses monthly, quarterly, semi-annually or annually.",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "Per-member monthly cap",
+          "shortfall": "Caps are per member and cap use of a shared balance rather than the bill: a paid plan keeps billing overage to the card, and the `/v1/budgets` endpoint is listed with no published rule for whether a budget blocks or only records.",
+          "note": "An owner or admin sets `monthly_spend_cap_micro` per member; it applies to keys the member creates afterwards, and a key with no cap of its own gets the member's cap. Included hours are followed by overage billed to the card.",
+          "source": {
+            "url": "https://docs.styne.ai/organizations.md",
+            "quote": "The account balance is shared; a cap only limits how much of it one member's keys can use.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -20452,6 +21148,18 @@
             "url": "https://docs.hosthatch.com/api/servers/",
             "quote": "This month's traffic: `allocated_gb`, `extra_gb` bought on top, and `used_gb`",
             "confidence": "not-published"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "credit emails only",
+          "shortfall": "Styne emails when credit runs out and on days 0, 3 and 6 of the grace period, but nothing lets you set your own spend threshold.",
+          "note": "At zero credit the dashboard shows a banner and Styne emails the account; `GET /v1/run/no-credit` reports `state`, `since`, `pause_at` and `delete_at`. No alert threshold or recipient setting is published.",
+          "source": {
+            "url": "https://docs.styne.ai/billing.md",
+            "quote": "We email you on day 0, day 3 and day 6",
+            "confidence": "docs-confirmed"
           }
         }
       ]
@@ -20770,6 +21478,17 @@
             "quote": "List actions",
             "confidence": "not-published"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "GET /v1/audit-log",
+          "note": "Owner and admin read the account audit log, which records who started, paused or stopped each sandbox and who changed members. Retention and export are not published. The command history is a separate lifecycle log, not a compliance trail.",
+          "source": {
+            "url": "https://docs.styne.ai/organizations.md",
+            "quote": "GET    /v1/audit-log                     who changed what",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -21083,6 +21802,17 @@
             "url": "https://hosthatch.com/terms-of-service",
             "quote": "HostHatch will invoice Customer for Fees and Expenses monthly, quarterly, semi-annually or annually.",
             "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "per second",
+          "note": "The meter runs from create to kill, timeout or pause; a paused or sleeping sandbox accrues no seconds. Plan hours are counted at the 4 vCPU / 8 GB size, so a small sandbox spends half an hour of allowance an hour.",
+          "source": {
+            "url": "https://docs.styne.ai/billing.md",
+            "quote": "A sandbox is metered per second while it runs.",
+            "confidence": "docs-confirmed"
           }
         }
       ]
@@ -21412,6 +22142,18 @@
             "quote": "from $4.00 / month",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "full rate while running",
+          "shortfall": "A running sandbox pays its whole size rate whether its CPU is busy or idle; only a sandbox with no process of yours inside is slept automatically, and that one costs nothing.",
+          "note": "Shared vCPUs run at a 16% baseline (12% at 1 vCPU, 23% at 16) with burst credit, and guaranteed whole cores are for paid accounts. The meter is seconds at the size rate, not measured CPU.",
+          "source": {
+            "url": "https://docs.styne.ai/pause-tiers.md",
+            "quote": "The platform puts a running sandbox to sleep only when nothing of yours runs inside it (no process started after the sandbox was created: no server, job or open shell). Such a sandbox costs nothing to keep and wakes in milliseconds on the next command, file call or connection, so there is nothing to notice.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -21734,6 +22476,17 @@
             "url": "https://docs.hosthatch.com/api/servers/",
             "quote": "`end_of_term`: the server runs until the end of the period you paid for, then it is deleted.",
             "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "paused $0",
+          "note": "The billing page and the pricing page both say a paused VM costs $0, and a memory pause keeps its memory on the node without a charge. The same billing page also says a paused sandbox is metered at its pause-tier rate, and no tier price is published.",
+          "source": {
+            "url": "https://docs.styne.ai/billing.md",
+            "quote": "A paused or sleeping VM or browser costs $0.",
+            "confidence": "docs-confirmed"
           }
         }
       ]
@@ -22061,6 +22814,18 @@
             "quote": "Our smallest plan costs $4 per month",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "no",
+          "figure": "Starter $20/mo",
+          "shortfall": "Every way to run a sandbox past the free 300 seconds needs a subscription: Starter $20, Pro $99 or Scale $499 a month. There is no pay-as-you-go-only account.",
+          "note": "The hourly overage rates ($0.016 to $0.128 a VM hour) apply only inside a plan, after its included hours.",
+          "source": {
+            "url": "https://docs.styne.ai/billing.md",
+            "quote": "Styne Starter ($20 a month) starts with a 7-day free trial (card required); Styne Pro ($99 a month) and Styne Scale ($499 a month) are charged at checkout.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -22386,6 +23151,18 @@
             "url": "https://hosthatch.com/",
             "quote": "Our smallest plan costs $4 per month",
             "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "no",
+          "figure": "hourly by size",
+          "shortfall": "The subscription is flat per account, not per machine, and hours past the allowance bill by the size of the VM, so a busy month still moves the bill.",
+          "note": "The pricing page's \"Per month\" column ($12 / $23 / $47 / $93) is 730 hours at the hourly rate, not a flat machine price.",
+          "source": {
+            "url": "https://styne.ai/pricing",
+            "quote": "Then $0.032 per VM hour (4 vCPU default; small 2 vCPU $0.016, large $0.064, xlarge $0.128) and $0.04 per browser hour",
+            "confidence": "pricing-page"
           }
         }
       ]
@@ -22716,6 +23493,18 @@
             "quote": "Our virtual private servers (VPS) carry a 7-day money back guarantee with a valid reason requirement.",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "no",
+          "figure": "300 s once",
+          "shortfall": "Nothing recurs for free: an account created by an agent gets 300 seconds of sandbox time in total, and a person's account needs the 7-day trial or a plan.",
+          "note": "The 7-day trial's 20 VM hours are a one-off; after it the cheapest plan is $20 a month.",
+          "source": {
+            "url": "https://docs.styne.ai/agent-signup.md",
+            "quote": "| Free sandbox time | 300 seconds in total, then `429 free_tier_exhausted` with the way up (add a card in the dashboard) |",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -23043,6 +23832,18 @@
             "quote": "Our virtual private servers (VPS) carry a 7-day money back guarantee with a valid reason requirement.",
             "confidence": "inferred"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "20 VM hours on trial",
+          "shortfall": "The starting allowance is 20 VM hours and 20 browser hours inside a 7-day trial that needs a card; there is no dollar credit and the hours stop at 20 unless you upgrade.",
+          "note": "20 VM hours at the default size is $0.64 of compute at the overage rate; a trial that reaches 20 hours answers 422 limit_hours.",
+          "source": {
+            "url": "https://docs.styne.ai/billing.md",
+            "quote": "The 7-day trial of the Starter plan has smaller limits: 3 VMs and 2 browsers at once, 150 new a day, 20 VM hours and 20 browser hours, 10 saved snapshots.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -23368,6 +24169,18 @@
             "quote": "any credit card and related information that you provide to us is stored at Stripe, Inc",
             "confidence": "not-published"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "card for the trial",
+          "shortfall": "You can sign up with an email address and no card, and an agent can open an account with 300 seconds of free sandbox time; a person's first usable sandbox needs the 7-day trial, and that needs a card.",
+          "note": "An account with no trial or plan answers 402 plan_required on create; the trial itself is \"7 days, card required\".",
+          "source": {
+            "url": "https://docs.styne.ai/agent-signup.md",
+            "quote": "To go beyond the 300 free seconds, the owner starts the 7-day trial or picks a plan under Billing; a card is required",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -23679,6 +24492,17 @@
           "source": {
             "url": "https://status.hosthatch.com",
             "quote": "All systems Operational",
+            "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "99.949% sandbox API",
+          "note": "A Better Stack page lists Sandbox API, API (ash), website, docs, dashboard, browsers, sandbox create and MCP with uptime. All services were online at the check on 26 November 2026; MCP was lowest at 99.593%.",
+          "source": {
+            "url": "https://status.styne.ai",
+            "quote": "All services are online",
             "confidence": "docs-confirmed"
           }
         }
@@ -23997,6 +24821,16 @@
             "url": "https://hosthatch.com/terms-of-service",
             "quote": "Customer shall also be entitled to a pro-rata refund of any Fees attributable to the interrupted or inoperable Service(s)",
             "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "no",
+          "note": "The terms say the service is provided as is and as available, and no SLA page, target or service credit is published; a customer can agree a service level in writing.",
+          "source": {
+            "url": "https://styne.ai/legal/terms",
+            "quote": "we do not promise any level of uptime unless we agree a service level in writing",
+            "confidence": "docs-confirmed"
           }
         }
       ]
@@ -24317,6 +25151,16 @@
             "quote": "Our GDPR Data Processing Agreement is available here.",
             "confidence": "not-published"
           }
+        },
+        {
+          "provider": "styne",
+          "verdict": "not-published",
+          "note": "No SOC 2, ISO 27001, penetration test or trust centre appears in the docs corpus, the 17-URL sitemap, the terms, the privacy policy or the DPA. The DPA's security annex lists per-VM isolation, revocable keys, TLS, staff access and abuse monitoring only.",
+          "source": {
+            "url": "https://styne.ai/legal/dpa",
+            "quote": "Each sandbox runs in its own virtual machine with its own kernel, separated from other customers.",
+            "confidence": "docs-confirmed"
+          }
         }
       ]
     },
@@ -24625,6 +25469,17 @@
           "source": {
             "url": "https://hosthatch.com/privacy-policy",
             "quote": "Our GDPR Data Processing Agreement is available here.",
+            "confidence": "docs-confirmed"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "yes",
+          "figure": "Public DPA, SCCs",
+          "note": "A public DPA updated 12 November 2026 and part of the terms, with EU standard contractual clauses (module 2 or 3), the UK addendum and Swiss changes, a sub-processor list with an objection right and refund, breach notice and one audit a year on 30 days' notice.",
+          "source": {
+            "url": "https://styne.ai/legal/dpa",
+            "quote": "It applies when Styne Labs processes personal data on your behalf as your processor",
             "confidence": "docs-confirmed"
           }
         }
@@ -24942,6 +25797,18 @@
             "url": "https://hosthatch.com/features",
             "quote": "In 2017, we launched our own control panel",
             "confidence": "inferred"
+          }
+        },
+        {
+          "provider": "styne",
+          "verdict": "partly",
+          "figure": "SDKs Apache-2.0",
+          "shortfall": "Only the Python and TypeScript SDKs are published, under Apache-2.0; no sandbox runtime, server or self-hosting path is published, and the CLI is a signed binary with no repository.",
+          "note": "`github.com/styne-ai` has exactly two public repositories, both Apache-2.0, both created 2026-11-16. Nothing describes self-hosting or BYOC.",
+          "source": {
+            "url": "https://raw.githubusercontent.com/styne-ai/styne-python/main/LICENSE",
+            "quote": "Apache License Version 2.0, January 2004",
+            "confidence": "docs-confirmed"
           }
         }
       ]

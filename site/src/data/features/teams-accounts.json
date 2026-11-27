@@ -388,6 +388,18 @@
         "quote": "A project holds servers, SSH keys, firewall groups, snapshots, ISOs, actions and orders, and the people who manage them.",
         "confidence": "docs-confirmed"
       }
+    },
+    {
+      "provider": "styne",
+      "verdict": "partly",
+      "figure": "Per-member caps; no SSO",
+      "scenario": "Five people share one account and one wallet: each member's new keys can be capped monthly and the audit log shows who started what, but SSO, SCIM, a SOC 2 report and an account-level hard cap are not published.",
+      "note": "One plan, one wallet, five roles (owner, admin, developer, billing, viewer), invites by email, per-member monthly spend caps that apply to keys created afterwards, an audit log for owner and admin, emails at credit exhaustion, a public DPA with SCCs and a sub-processor list. No SSO or SCIM, no published audit retention, and `/v1/budgets` is listed without documented behaviour.",
+      "source": {
+        "url": "https://docs.styne.ai/organizations.md",
+        "quote": "The account balance is shared; a cap only limits how much of it one member's keys can use.",
+        "confidence": "docs-confirmed"
+      }
     }
   ],
   "figureLabel": "Hard spend cap?",

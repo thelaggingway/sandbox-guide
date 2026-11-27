@@ -388,6 +388,18 @@
         "quote": "our storage VMs are designed for massive storage capacity, scalable up to hundreds of terabytes",
         "confidence": "docs-confirmed"
       }
+    },
+    {
+      "provider": "styne",
+      "verdict": "partly",
+      "figure": "Whole disk; volumes; $0",
+      "scenario": "The whole disk and memory stay with a paused sandbox until you delete it, and a volume outlives the sandbox; neither storage type is billed today.",
+      "note": "A pause keeps the whole root disk. Volumes (1 to 100 GiB, up to 4 per sandbox) outlive sandboxes, one sandbox at a time, but a sandbox with a volume is killed rather than paused at its timeout. Volume and snapshot storage is $0 today; a volume is not backed up, and no S3-style mount is documented.",
+      "source": {
+        "url": "https://docs.styne.ai/billing.md",
+        "quote": "it is billed at the same stored-GiB rate as saved snapshots, which is \\$0 today.",
+        "confidence": "pricing-page"
+      }
     }
   ],
   "figureLabel": "Disk, and how long it is kept",

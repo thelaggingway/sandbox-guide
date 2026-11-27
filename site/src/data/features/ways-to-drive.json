@@ -387,6 +387,18 @@
         "quote": "The HostHatch API lets your code, scripts and AI agents do what you do in the console: order servers and pay for them with account credit, power and reinstall them, take snapshots, set up firewalls, mount ISOs, and manage SSH keys and reverse DNS.",
         "confidence": "docs-confirmed"
       }
+    },
+    {
+      "provider": "styne",
+      "verdict": "yes",
+      "figure": "Browser in dashboard; VM by SDK/CLI",
+      "scenario": "An SDK or the CLI creates the VM, the hosted MCP server gives an assistant the same tools, and the dashboard starts a browser but no page shows creating a VM there.",
+      "note": "REST API with OpenAPI 3.1, Python and TypeScript SDKs, a static CLI, a hosted MCP server, PTY and file APIs, SSH, and drop-in wire formats for E2B, Daytona, Vercel/Modal, boat, Browserbase and Steel. No documented dashboard path creates a Linux VM; the Browsers page starts a browser session with a button.",
+      "source": {
+        "url": "https://docs.styne.ai/browsers.md",
+        "quote": "The Browsers page lists the account's sessions with their state, region and end time. **Start a browser** starts one",
+        "confidence": "docs-confirmed"
+      }
     }
   ],
   "figureLabel": "First machine without a terminal?",

@@ -40,6 +40,10 @@ const handWorked: [string, "a" | "b" | "c", number][] = [
   // B: 730 h × (0.4×$0.03 + 8×$0.008) + 50 GiB as 53.69 GB × $0.10/720 × 730 = $60.92, $35.92 over the credit.
   // C: 90 h × (0.2×$0.03 + 4×$0.008) + 20 GiB as 21.47 GB × ($0.10/720×90 + $0.18/720×640) = $7.12 usage → $25.
   ["runtime", "a", 25], ["runtime", "b", 60.92], ["runtime", "c", 25],
+  // Styne Starter (billing docs, 2026-11-26): $20 fee, 700 VM hours counted at the 4 vCPU / 8 GB size = $22.40 at $0.032;
+  // small $0.016/h, default $0.032/h, disk included, paused $0. A: 166.67 h × $0.016 = $2.67 → $20;
+  // B: 730 h × $0.032 = $23.36, $0.96 over $22.40 → $20.96; C: 90 h × $0.016 = $1.44 → $20.
+  ["styne", "a", 20], ["styne", "b", 20.96], ["styne", "c", 20],
   // 1,000 runs at the $0.01 minimum; 730 h capped at $48; 90 on + 640 powered off, capped at $24.
   ["digitalocean", "a", 10], ["digitalocean", "b", 48], ["digitalocean", "c", 24],
   // 1,000 servers × 1 h (rounded up) × $0.0368 + 1,000 IPv4-hours × $0.001; min(730 h × $0.0673, $41.99) + $0.60 IPv4; CPX22 capped at $22.99 + $0.60.

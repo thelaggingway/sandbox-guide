@@ -1,0 +1,413 @@
+{
+  "id": "styne",
+  "name": "Styne",
+  "url": "https://styne.ai",
+  "status": "researched",
+  "checkedOn": "2026-11-26",
+  "oneLiner": "Cheap, E2B-compatible microVMs that pause for free, plus cloud browsers that stay logged in, from a company launched in mid-November 2026.",
+  "whatItIs": [
+    "Styne runs Linux microVMs for code an AI agent writes or runs: create one from a template, run commands, move files, pause it with its memory kept, fork it and snapshot it. Each sandbox has its own kernel, disk and network.",
+    "It speaks E2B's wire format, so the stock e2b Python and TypeScript SDKs work after changing three environment variables, and it answers the Daytona, Vercel/Modal and Boat client calls too. Its own SDKs, a CLI, an HTTP API and a hosted MCP server reach the same sandboxes with the same key.",
+    "The same account also sells cloud browsers for agents (Chromium in its own microVM, kept logged in, sleeping for free), GitHub Actions runners on microVMs, and a search, fetch and crawl API. This guide prices the sandboxes; the browser is covered under the built-in browser capability and the browser-agent use case.",
+    "Styne went public in mid-November 2026: its legal pages are dated 12 November and its docs were published on 13 November. Prices and plan rules changed on 20 and 26 November."
+  ],
+  "whoFor": "Developers who already use E2B-style sandboxes from code and want a lower price, and builders of browser agents that work on logged-in sites and sit idle between bursts. Not for someone who wants a dashboard to click a machine into existence, or who needs an EU region or a vendor with a track record.",
+  "isolation": "A microVM per sandbox with its own kernel, disk and network; the hypervisor is not named. Root by default. Custom images come only from public docker.io, ghcr.io or quay.io images. Docker is documented only inside its CI runners, and nothing is published about nested virtualisation or GPUs.",
+  "sizes": "Four fixed sizes: small 2 vCPU / 4 GiB / 51 GiB, default 4 / 8 / 51, large 8 / 16 / 111 and xlarge 16 / 32 / 251 (Scale plan only). CPU is shared with a 16% per-vCPU baseline plus burst credit; paid accounts can ask for whole cores. One open region, US East (Ashburn); Amsterdam is \"coming back later\".",
+  "billing": {
+    "model": "A monthly plan with included VM hours, then a flat hourly price per size: Starter $20 (700 hours), Pro $99 (4,000) and Scale $499 (14,000). Included hours are counted at the 4 vCPU / 8 GB size.",
+    "meter": "Per second while running: $0.016 an hour for small, $0.032 default, $0.064 large and $0.128 xlarge, after the included hours (rates since 20 November 2026). Disk is not charged separately; snapshots and volumes are $0 today.",
+    "stopped": "A paused sandbox costs $0 and is kept, memory included, until you delete it. The billing page also says a paused sandbox is metered at its pause tier's rate, but publishes no such rate.",
+    "planFee": "Starter $20, Pro $99, Scale $499 a month. Starter starts with a 7-day trial that needs a card; Pro and Scale are charged at checkout.",
+    "minimum": "No minimum duration, but no plan-free use: an account with no trial or plan cannot start a sandbox, and an agent-created account gets 300 free sandbox seconds once."
+  },
+  "cost": {
+    "A": {
+      "headline": "$20 a month on Starter",
+      "shape": "small: 2 vCPU / 4 GiB / 51 GiB, deleted after each task",
+      "lines": [
+        {
+          "label": "VM time",
+          "arithmetic": "166.67 h × $0.016",
+          "amount": "$2.67"
+        },
+        {
+          "label": "Included hours used",
+          "arithmetic": "166.67 h on small count as 83.33 of Starter's 700",
+          "amount": "$0.00"
+        },
+        {
+          "label": "Starter plan",
+          "arithmetic": "$20 fee",
+          "amount": "$20.00"
+        }
+      ],
+      "total": "$20.00",
+      "notes": [
+        "The usage fits well inside Starter's included hours, so the month costs the plan fee.",
+        "The 10 GiB disk asked for comes with the size's 51 GiB disk at no extra charge.",
+        "Each new sandbox starts with 10 minutes of full-speed CPU, so a 10-minute task at 50% busy is not held to the 16% baseline."
+      ]
+    },
+    "B": {
+      "headline": "$20.96 a month on Starter",
+      "shape": "default: 4 vCPU / 8 GiB / 51 GiB, 730 h, always on",
+      "lines": [
+        {
+          "label": "VM time",
+          "arithmetic": "730 h × $0.032",
+          "amount": "$23.36"
+        },
+        {
+          "label": "Included hours",
+          "arithmetic": "700 h at the 4 vCPU / 8 GB size",
+          "amount": "−$22.40"
+        },
+        {
+          "label": "Overage",
+          "arithmetic": "30 h × $0.032",
+          "amount": "$0.96"
+        },
+        {
+          "label": "Starter plan",
+          "arithmetic": "$20 fee",
+          "amount": "$20.00"
+        }
+      ],
+      "total": "$20.96",
+      "notes": [
+        "A sandbox lives at most 24 hours per timeout. Running all month needs a keep-alive call to /refreshes or /timeout before each deadline; the docs say a keep-alive loop \"can call it freely\" and give no upper bound.",
+        "Without that loop the sandbox is killed at its timeout, or paused if it was created with onTimeout \"pause\".",
+        "10% busy is under the 16% per-vCPU baseline, so the shared CPU is not held back."
+      ],
+      "flag": "Always on needs your own keep-alive loop: one timeout lasts at most 24 hours."
+    },
+    "C": {
+      "headline": "$20 a month on Starter",
+      "shape": "small: 2 vCPU / 4 GiB / 51 GiB, 90 running hours, paused otherwise",
+      "lines": [
+        {
+          "label": "VM time",
+          "arithmetic": "90 h × $0.016",
+          "amount": "$1.44"
+        },
+        {
+          "label": "Paused 640 h",
+          "arithmetic": "640 h × $0",
+          "amount": "$0.00"
+        },
+        {
+          "label": "Starter plan",
+          "arithmetic": "$20 fee; 90 h on small count as 45 of 700 included hours",
+          "amount": "$20.00"
+        }
+      ],
+      "total": "$20.00",
+      "notes": [
+        "A paused sandbox is kept, with its memory and processes, until you delete it.",
+        "The billing page also says a paused sandbox is metered at its pause tier's rate, with no rate published; this total uses the $0 the pricing page states."
+      ]
+    }
+  },
+  "company": {
+    "facts": [
+      {
+        "label": "Legal entity",
+        "value": "Styne Labs. No legal form, jurisdiction, company number or registered address is published, and the disputes section names no governing law or courts.",
+        "source": {
+          "url": "https://styne.ai/legal/terms",
+          "quote": "These terms are an agreement between you and Styne Labs (\"we\", \"us\").",
+          "confidence": "docs-confirmed"
+        }
+      },
+      {
+        "label": "Founded",
+        "value": "Not published. The earliest dated public material is the legal set of 12 November 2026 and documentation published 13 November 2026; the GitHub organisation was created 13 November 2026. That is a launch date, not a founding date.",
+        "source": {
+          "url": "https://docs.styne.ai/changelog.md",
+          "quote": "**Documentation published.** Every page of these docs is now at `https://docs.styne.ai/`",
+          "confidence": "docs-confirmed"
+        }
+      },
+      {
+        "label": "Founders",
+        "value": "Not published. No founder or executive is named on the site, in the docs or on GitHub.",
+        "source": {
+          "url": "https://github.com/styne-ai",
+          "quote": "This organization has no public members.",
+          "confidence": "third-party"
+        }
+      },
+      {
+        "label": "Funding",
+        "value": "Not published. No round, investor, accelerator or valuation appears on the site, pricing page, terms, privacy policy or DPA, and no press coverage was found by TinyFish search, Context web search, Context company search or HN Algolia on 2026-11-26.",
+        "source": {
+          "url": "https://styne.ai/legal/terms",
+          "quote": "Products Sandboxes Browsers Search CI runners Pricing Developers Docs Browser quickstart Changelog llms.txt Status Discord X SDK: GitHub SDK: npm SDK: PyPI Compare Styne vs E2B Styne vs Daytona Styne vs Modal Styne vs Vercel Sandbox Styne vs Browserbase Legal Terms Privacy Acceptable use Sub-processors DPA",
+          "confidence": "not-published"
+        }
+      },
+      {
+        "label": "Headcount",
+        "value": "Not published. No team, about or careers page exists: the site's full navigation and its 17-URL sitemap list only product, pricing, docs, compare and legal pages, and the GitHub organisation has no public members.",
+        "source": {
+          "url": "https://styne.ai/legal/terms",
+          "quote": "Products Sandboxes Browsers Search CI runners Pricing Developers Docs Browser quickstart Changelog llms.txt Status Discord X SDK: GitHub SDK: npm SDK: PyPI Compare Styne vs E2B Styne vs Daytona Styne vs Modal Styne vs Vercel Sandbox Styne vs Browserbase Legal Terms Privacy Acceptable use Sub-processors DPA",
+          "confidence": "not-published"
+        }
+      },
+      {
+        "label": "Location",
+        "value": "No address published. Sandboxes and browsers run in US East (Ashburn); the sub-processor page names Hostkey in the Netherlands for the bare-metal servers that run sandboxes and Hetzner in Germany and the United States for the control plane.",
+        "source": {
+          "url": "https://docs.styne.ai/regions.md",
+          "quote": "A VM or browser runs in US East (Ashburn). Amsterdam (EU) is coming back later",
+          "confidence": "docs-confirmed"
+        }
+      },
+      {
+        "label": "Launch history",
+        "value": "Legal pages 12 November 2026; documentation published 13 November; SDKs on npm and PyPI 16 November; VM overage prices cut 20 November; search, fetch and crawl 23 November; plan VM hours counted by size 26 November.",
+        "source": {
+          "url": "https://docs.styne.ai/changelog.md",
+          "quote": "**VM hours counted by size.** A plan's included VM hours are counted at the 4 vCPU / 8 GB size",
+          "confidence": "docs-confirmed"
+        }
+      },
+      {
+        "label": "Licences",
+        "value": "Python and TypeScript SDKs Apache-2.0 on GitHub; the CLI is a signed static binary with no repository; no runtime or self-hosting code is published.",
+        "source": {
+          "url": "https://raw.githubusercontent.com/styne-ai/styne-python/main/LICENSE",
+          "quote": "Apache License Version 2.0, January 2004",
+          "confidence": "docs-confirmed"
+        }
+      },
+      {
+        "label": "Status and SLA",
+        "value": "A Better Stack status page with per-component uptime (Sandbox API 99.949%, MCP 99.593%, all online on 26 November 2026). No SLA: the terms promise no uptime level unless one is agreed in writing.",
+        "source": {
+          "url": "https://status.styne.ai",
+          "quote": "All services are online",
+          "confidence": "docs-confirmed"
+        }
+      },
+      {
+        "label": "Certification",
+        "value": "No SOC 2, ISO 27001 or other report and no trust centre published. The DPA's security annex lists isolation, TLS, scoped keys, staff access and abuse monitoring.",
+        "source": {
+          "url": "https://styne.ai/legal/dpa",
+          "quote": "Each sandbox runs in its own virtual machine with its own kernel, separated from other customers.",
+          "confidence": "docs-confirmed"
+        }
+      }
+    ]
+  },
+  "fits": {
+    "well": [
+      "Code from the E2B SDK: the stock e2b package works after changing three environment variables, at a lower price.",
+      "Agents that work in bursts: pause keeps memory and processes for $0, and a schedule or webhook can wake the sandbox.",
+      "Browser agents on logged-in sites that idle between tasks: the browser sleeps for free with its tabs kept, and a person can take over a login."
+    ],
+    "badly": [
+      "Anything that must stay in the EU, or anywhere outside US East: only Ashburn is open today.",
+      "A server that must stay on for weeks without your own keep-alive code: one timeout lasts at most 24 hours.",
+      "Buyers who need SOC 2, SSO, an SLA or a vendor with a public history and owners."
+    ]
+  },
+  "usability": {
+    "dashboard": "The dashboard creates API keys, invites members, sets spend caps, shows usage and billing, has a CI tab and a sandbox page with region and CPU metrics, and starts browser sessions with a live view and human takeover. No page shows creating a Linux VM from it.",
+    "withoutCode": "Partly: a browser session starts from the Browsers page, and the hosted MCP server lets an assistant create VMs from a prompt, but starting a VM by hand means the CLI, an SDK or curl.",
+    "signup": "Email sign-up, then a key from the API keys page. The Starter plan's 7-day trial needs a card; Pro and Scale have no trial.",
+    "docs": "Mintlify docs with every page in Markdown, llms.txt and llms-full.txt, an OpenAPI 3.1 document, and drop-in pages for E2B, Daytona, Vercel/Modal, boat, Browserbase and Steel.",
+    "tripsUp": [
+      "No dashboard button creates a Linux VM; the quickstart is a terminal or an SDK call.",
+      "The default image has no coding agent: the first prompt installs Claude Code or Codex from npm.",
+      "`ams` is accepted but served in Ashburn, so naming Europe does not put the VM in Europe.",
+      "A paid plan bills overage to the card: member caps limit one person's keys, not the bill.",
+      "The privacy policy says no command history is kept while the exec docs describe one.",
+      "A sandbox lives 300 seconds unless you set a timeout, and at most 24 hours per timeout; staying on needs a keep-alive call."
+    ]
+  },
+  "caveats": [
+    {
+      "issue": "A company launched in mid-November 2026 that publishes almost nothing about itself",
+      "detail": "\"Styne Labs\" has no published legal form, jurisdiction, address, founders, funding or headcount. Its legal pages date from 12 November 2026 and prices or plan rules changed on 20 and 26 November. Expect changes and re-check prices before relying on them.",
+      "status": "open"
+    },
+    {
+      "issue": "Paused sandboxes are both free and metered",
+      "detail": "The pricing page and the billing page say a paused VM costs $0, but the same billing page and the pause page say a paused sandbox is metered at its pause tier's rate, and the wake-triggers page says a paused sandbox costs disk only. No tier rate is published. This guide uses $0.",
+      "status": "contradiction",
+      "evidence": [
+        {
+          "url": "https://docs.styne.ai/billing.md",
+          "quote": "A paused or sleeping VM or browser costs $0.",
+          "confidence": "docs-confirmed"
+        },
+        {
+          "url": "https://docs.styne.ai/billing.md",
+          "quote": "A paused sandbox is metered at its pause tier's rate.",
+          "confidence": "docs-confirmed"
+        }
+      ]
+    },
+    {
+      "issue": "Where sandboxes physically run is unclear",
+      "detail": "The regions page says machines are in Northern Virginia and Amsterdam is dark, while the sub-processor page lists only Hostkey in the Netherlands for the servers that run sandboxes. Do not rely on either for data residency.",
+      "status": "contradiction",
+      "evidence": [
+        {
+          "url": "https://docs.styne.ai/regions.md",
+          "quote": "Where a create starts. Machines in Northern Virginia.",
+          "confidence": "docs-confirmed"
+        },
+        {
+          "url": "https://styne.ai/legal/subprocessors",
+          "quote": "Bare-metal servers that run sandboxes",
+          "confidence": "docs-confirmed"
+        }
+      ]
+    },
+    {
+      "issue": "The privacy policy and the docs disagree about command history",
+      "detail": "The privacy policy says no command history or output is kept. The command docs say every command is kept with the last 1 MiB of its output, up to 1,000 commands per sandbox, unless zero data retention is switched on. This guide follows the docs.",
+      "status": "contradiction",
+      "evidence": [
+        {
+          "url": "https://styne.ai/legal/privacy",
+          "quote": "We do not keep a history of the commands you run in a sandbox or of their output",
+          "confidence": "docs-confirmed"
+        },
+        {
+          "url": "https://docs.styne.ai/exec.md",
+          "quote": "Every command run in a sandbox is kept",
+          "confidence": "docs-confirmed"
+        }
+      ]
+    },
+    {
+      "issue": "The search price headline disagrees with the billing docs",
+      "detail": "The pricing page's headline reads \"$0.001 / 1,000 searches in fast mode\", captioned \"Per started block of 10 results\", but the same page's FAQ and the billing docs give $1, $2 and $5 per 1,000 searches (fast, auto, deep) for blocks of 10 results. Which is billed cannot be settled from Styne's pages; use the docs figure. Search is not part of the sandbox prices here.",
+      "status": "contradiction",
+      "evidence": [
+        {
+          "url": "https://styne.ai/pricing",
+          "quote": "$1 per 1,000 searches in fast mode, $2 in auto and $5 in deep",
+          "confidence": "pricing-page"
+        },
+        {
+          "url": "https://docs.styne.ai/billing.md",
+          "quote": "per 1,000 blocks",
+          "confidence": "docs-confirmed"
+        }
+      ]
+    },
+    {
+      "issue": "Egress, static IP and custom domains are not published",
+      "detail": "No outbound-traffic price or allowance, fixed outgoing address or custom domain appears anywhere. Preview URLs are styne.ai addresses only.",
+      "status": "open"
+    }
+  ],
+  "strengths": [
+    "Low flat prices: $0.016 an hour for 2 vCPU / 4 GiB after the included hours, with disk included and paused time free.",
+    "Pause keeps memory, processes and files at $0, and a cron schedule or a signed webhook (Slack, Telegram, GitHub, Stripe) can wake the sandbox and hand it the event.",
+    "Drop-in for the E2B SDK, with Daytona, Vercel/Modal and Boat client routes too, plus its own SDKs, CLI, MCP server and stock OpenSSH access.",
+    "A cloud browser product of its own: each browser is a Chromium in its own microVM, driven over CDP, with a live view, human takeover for a login or captcha, and a write-only login vault that types passwords and two-step codes. Idle browsers sleep at no charge and wake on the same tab, and a signed-in browser can be forked into parallel copies. Checkpoint and rewind come with the $99 plan.",
+    "The browser and the sandbox share one account and one key, and the browser API answers the Browserbase and Steel session endpoints, so existing client code runs after a base URL change."
+  ],
+  "sources": [
+    {
+      "label": "Pricing",
+      "url": "https://styne.ai/pricing"
+    },
+    {
+      "label": "Limits and sizes",
+      "url": "https://docs.styne.ai/limits.md"
+    },
+    {
+      "label": "Timeouts, pause and resume",
+      "url": "https://docs.styne.ai/pause-tiers.md"
+    },
+    {
+      "label": "Regions",
+      "url": "https://docs.styne.ai/regions.md"
+    },
+    {
+      "label": "Wake triggers and schedules",
+      "url": "https://docs.styne.ai/wake-triggers.md"
+    },
+    {
+      "label": "Styne documentation index",
+      "url": "https://docs.styne.ai/llms.txt"
+    },
+    {
+      "label": "Quickstart",
+      "url": "https://docs.styne.ai/quickstart.md"
+    },
+    {
+      "label": "SDKs and drop-ins",
+      "url": "https://docs.styne.ai/sdks.md"
+    },
+    {
+      "label": "CLI reference",
+      "url": "https://docs.styne.ai/cli.md"
+    },
+    {
+      "label": "MCP server",
+      "url": "https://docs.styne.ai/mcp.md"
+    },
+    {
+      "label": "Run a coding agent in a sandbox",
+      "url": "https://docs.styne.ai/agents.md"
+    },
+    {
+      "label": "Browsers",
+      "url": "https://docs.styne.ai/browsers.md"
+    },
+    {
+      "label": "Organizations, roles and spend caps",
+      "url": "https://docs.styne.ai/organizations.md"
+    },
+    {
+      "label": "Plans and billing",
+      "url": "https://docs.styne.ai/billing.md"
+    },
+    {
+      "label": "Data retention",
+      "url": "https://docs.styne.ai/data-retention.md"
+    },
+    {
+      "label": "API v1",
+      "url": "https://docs.styne.ai/api-v1.md"
+    },
+    {
+      "label": "Changelog",
+      "url": "https://docs.styne.ai/changelog.md"
+    },
+    {
+      "label": "Terms of Service",
+      "url": "https://styne.ai/legal/terms"
+    },
+    {
+      "label": "Privacy Policy",
+      "url": "https://styne.ai/legal/privacy"
+    },
+    {
+      "label": "Data Processing Addendum",
+      "url": "https://styne.ai/legal/dpa"
+    },
+    {
+      "label": "Sub-processors",
+      "url": "https://styne.ai/legal/subprocessors"
+    },
+    {
+      "label": "Status page",
+      "url": "https://status.styne.ai"
+    },
+    {
+      "label": "GitHub organisation",
+      "url": "https://github.com/styne-ai"
+    }
+  ]
+}

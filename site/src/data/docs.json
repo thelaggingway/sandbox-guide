@@ -1952,5 +1952,71 @@
       "title": "Terms: refund policy",
       "url": "https://hosthatch.com/terms-of-service#refund-policy"
     }
+  },
+  "styne": {
+    "isolation": {
+      "title": "Sandboxes: a microVM per sandbox",
+      "url": "https://docs.styne.ai/sandboxes.md"
+    },
+    "sizes-regions": {
+      "title": "Limits: sizes and CPU classes",
+      "url": "https://docs.styne.ai/limits.md"
+    },
+    "lifecycle": {
+      "title": "Timeouts, pause and resume",
+      "url": "https://docs.styne.ai/pause-tiers.md"
+    },
+    "snapshots-forks": {
+      "title": "Snapshots",
+      "url": "https://docs.styne.ai/snapshots.md"
+    },
+    "storage": {
+      "title": "Volumes",
+      "url": "https://docs.styne.ai/volumes.md"
+    },
+    "idle-timers": {
+      "title": "Wake triggers and schedules",
+      "url": "https://docs.styne.ai/wake-triggers.md"
+    },
+    "reaching-it": {
+      "title": "Ports and preview URLs",
+      "url": "https://docs.styne.ai/ports.md"
+    },
+    "custom-domains": {
+      "title": "Ports and preview URLs (styne.ai addresses only)",
+      "url": "https://docs.styne.ai/ports.md"
+    },
+    "outbound-network": {
+      "title": "Network and egress",
+      "url": "https://docs.styne.ai/network.md"
+    },
+    "keys-secrets": {
+      "title": "API keys",
+      "url": "https://docs.styne.ai/authentication.md"
+    },
+    "ways-to-drive": {
+      "title": "Switch from E2B (SDK drop-in)",
+      "url": "https://docs.styne.ai/e2b-drop-in.md"
+    },
+    "built-in-agents": {
+      "title": "Run a coding agent in a sandbox",
+      "url": "https://docs.styne.ai/agents.md"
+    },
+    "teams-accounts": {
+      "title": "Organizations: members and roles",
+      "url": "https://docs.styne.ai/organizations.md"
+    },
+    "company": {
+      "title": "Terms of Service",
+      "url": "https://styne.ai/legal/terms"
+    },
+    "billing-models": {
+      "title": "Plans and billing",
+      "url": "https://docs.styne.ai/billing.md"
+    },
+    "trials-free-tiers": {
+      "title": "Plans and billing: the 7-day trial",
+      "url": "https://docs.styne.ai/billing.md"
+    }
   }
 }
